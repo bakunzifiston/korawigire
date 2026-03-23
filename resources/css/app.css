@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* Brand palette from logo: green #00A651, red #E31E24, black #000000, white #FFFFFF */
+@theme {
+    --font-sans: 'Montserrat', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-brand-50: #f0faf4;
+    --color-brand-100: #d8f3e4;
+    --color-brand-200: #b0e7c9;
+    --color-brand-300: #7dd4a8;
+    --color-brand-600: #008f4a;
+    --color-brand-700: #007a40;
+    --color-brand-800: #0a3d24;
+    --color-brand-900: #000000;
+    --color-accent-300: #f9a8a8;
+    --color-accent-400: #ef4a4f;
+    --color-accent-500: #e31e24;
+    --color-accent-600: #c41920;
+    --color-accent-700: #9b1419;
+}
+
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+        background-color: var(--color-brand-200);
+        color: var(--color-brand-900);
+    }
+}
+
+/* Subtle page backdrop behind main content */
+.page-backdrop {
+    background-color: var(--color-brand-50);
+    background-image:
+        radial-gradient(ellipse 120% 80% at 100% -20%, rgba(0, 166, 81, 0.08), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(227, 30, 36, 0.05), transparent 45%);
+}

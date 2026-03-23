@@ -1,0 +1,126 @@
+@extends('layouts.site', ['title' => 'Home'])
+
+@section('content')
+    <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-[#061208] to-brand-800 text-white">
+        <div class="pointer-events-none absolute -right-32 top-0 h-[28rem] w-[28rem] rounded-full bg-[#00A651]/30 blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-40 -left-32 h-[22rem] w-[22rem] rounded-full bg-[#E31E24]/25 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.25)_100%)]"></div>
+        <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+            <p class="text-xs font-bold uppercase tracking-[0.28em] text-accent-400 sm:text-sm">Rubavu · Rwanda</p>
+            <h1 class="mt-5 max-w-4xl text-3xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                {{ config('korawigire.tagline') }}
+            </h1>
+            <p class="mt-8 max-w-2xl text-base leading-relaxed text-white/88 sm:text-lg">
+                Discover your potential with {{ config('korawigire.company') }}. Whether you want to amplify your message through Money Radio, express your identity with custom fashion and tailoring, or create a strong brand presence through professional graphic design and printing, we are here to help you succeed.
+            </p>
+            <div class="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href="{{ route('forms.show', 'radio-ad') }}" class="inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-accent-600/25 transition duration-200 hover:-translate-y-0.5 hover:bg-accent-600 hover:shadow-lg">
+                    Advertise With Us — Radio
+                </a>
+                <a href="{{ route('gallery') }}" class="inline-flex items-center justify-center rounded-full border-2 border-white/50 bg-white/10 px-8 py-4 text-sm font-bold text-white backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/20">
+                    View our gallery
+                </a>
+                <a href="{{ route('contact') }}" class="inline-flex items-center justify-center rounded-full border border-white/35 bg-transparent px-8 py-4 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/10">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="border-b border-brand-200/80 bg-gradient-to-b from-white to-brand-50/90 py-16 sm:py-20" aria-labelledby="vision-mission-heading">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 id="vision-mission-heading" class="text-xs font-bold uppercase tracking-[0.22em] text-brand-600 sm:text-sm">Who we are</h2>
+                <p class="mt-3 text-3xl font-extrabold tracking-tight text-brand-900 sm:text-4xl">Vision &amp; mission</p>
+                <p class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-zinc-600">What drives us every day in Rubavu and across our services.</p>
+            </div>
+            <div class="mt-14 grid gap-6 lg:grid-cols-2 lg:gap-8">
+                <article class="group rounded-3xl border border-brand-200/80 bg-white p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] lg:p-10">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-500/20 to-accent-600/10 text-lg font-extrabold text-accent-600" aria-hidden="true">V</div>
+                    <h3 class="mt-6 text-xl font-extrabold text-brand-900">Our vision</h3>
+                    <p class="mt-4 leading-relaxed text-zinc-600">
+                        To become Rubavu’s leading multi-service hub, combining creativity, media, and technology to uplift communities and grow sustainable businesses.
+                    </p>
+                </article>
+                <article class="group rounded-3xl border border-brand-200/80 bg-white p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] ring-1 ring-brand-900/5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-8px_rgba(0,166,81,0.18)] lg:p-10">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-800 to-brand-900 text-lg font-extrabold text-white" aria-hidden="true">M</div>
+                    <h3 class="mt-6 text-xl font-extrabold text-brand-900">Our mission</h3>
+                    <p class="mt-4 leading-relaxed text-zinc-600">
+                        To deliver professional radio advertising, custom tailoring, graphic design, printing, and carpentry solutions while expanding digital access, creativity, and skills for youth and entrepreneurs.
+                    </p>
+                </article>
+            </div>
+            <p class="mt-12 text-center">
+                <a href="{{ route('about') }}" class="inline-flex items-center gap-1 text-sm font-bold text-brand-800 underline-offset-4 transition hover:text-brand-900 hover:underline">Read our full story <span aria-hidden="true">→</span></a>
+            </p>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div class="rounded-[1.75rem] border border-brand-200/70 bg-white/90 p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] backdrop-blur-sm lg:p-12">
+            <h2 class="text-2xl font-extrabold tracking-tight text-brand-900 sm:text-3xl">Service highlights</h2>
+            <p class="mt-4 max-w-3xl leading-relaxed text-zinc-600">
+                We provide integrated media, fashion, printing, and carpentry services designed for individuals, SMEs, institutions, and growing brands.
+            </p>
+            <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ([
+                    ['title' => 'Money Radio', 'desc' => 'Local reach, creative production, flexible ad packages.', 'href' => route('forms.show', 'radio-ad')],
+                    ['title' => 'Tailoring & Fashion', 'desc' => 'Custom garments, uniforms, bridal wear, and training.', 'href' => route('services').'#tailoring'],
+                    ['title' => 'Design & Printing', 'desc' => 'Branding, print materials, and combo packages with radio.', 'href' => route('services').'#printing'],
+                    ['title' => 'Carpentry', 'desc' => 'Furniture, interiors, and institutional woodwork.', 'href' => route('services').'#carpentry'],
+                ] as $card)
+                    <article class="group flex flex-col rounded-2xl border border-brand-200/60 bg-gradient-to-b from-white to-brand-50/40 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg">
+                        <h3 class="font-bold text-brand-900">{{ $card['title'] }}</h3>
+                        <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-600">{{ $card['desc'] }}</p>
+                        <a href="{{ $card['href'] }}" class="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand-800 transition group-hover:gap-2 group-hover:text-accent-600">Learn more <span aria-hidden="true">→</span></a>
+                    </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    @if (! empty($galleryPreview))
+        <section class="border-t border-brand-200/80 bg-gradient-to-b from-brand-50/50 to-white py-14 sm:py-16" aria-labelledby="gallery-preview-heading">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                    <h2 id="gallery-preview-heading" class="text-3xl font-extrabold tracking-tight text-brand-900 sm:text-4xl">
+                        Gallery
+                    </h2>
+                    <a href="{{ route('gallery') }}" class="inline-flex shrink-0 items-center justify-center rounded-full bg-brand-900 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand-900/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-800">
+                        View all {{ $galleryCount }} →
+                    </a>
+                </div>
+                <ul class="mt-10 grid grid-cols-3 gap-2 sm:gap-4">
+                    @foreach ($galleryPreview as $path)
+                        <li class="group overflow-hidden rounded-2xl border border-brand-200/80 bg-white shadow-md ring-1 ring-black/[0.04] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <a href="{{ route('gallery') }}" class="block overflow-hidden">
+                                <img
+                                    src="{{ site_image($path) }}"
+                                    alt=""
+                                    width="320"
+                                    height="320"
+                                    loading="lazy"
+                                    decoding="async"
+                                    class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
+                                />
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </section>
+    @endif
+
+    <section class="border-y border-brand-200/80 bg-white py-14">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-600 sm:text-sm">Quick links</h2>
+            <nav class="mt-8 flex flex-wrap justify-center gap-2.5 sm:gap-3" aria-label="Quick links">
+                <a class="rounded-full border border-brand-200 bg-brand-50/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-white hover:shadow-md" href="{{ route('forms.show', 'radio-ad') }}">Radio Advertising</a>
+                <a class="rounded-full border border-brand-200 bg-brand-50/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-white hover:shadow-md" href="{{ route('gallery') }}">Gallery</a>
+                <a class="rounded-full border border-brand-200 bg-brand-50/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-white hover:shadow-md" href="{{ route('services') }}#tailoring">Tailoring &amp; Fashion</a>
+                <a class="rounded-full border border-brand-200 bg-brand-50/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-white hover:shadow-md" href="{{ route('services') }}#printing">Graphic Design &amp; Printing</a>
+                <a class="rounded-full border border-brand-200 bg-brand-50/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-white hover:shadow-md" href="{{ route('contact') }}">Contact Us</a>
+            </nav>
+        </div>
+    </section>
+@endsection
