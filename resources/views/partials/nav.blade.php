@@ -11,7 +11,7 @@
         ['route' => 'contact', 'label' => 'Contact'],
     ];
 @endphp
-<header class="sticky top-0 z-50 border-b border-brand-200/80 bg-white/80 shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] backdrop-blur-xl backdrop-saturate-150">
+<header class="sticky top-0 z-50 border-b border-brand-200 bg-white shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)]">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
         <a href="{{ route('home') }}" class="group flex items-center gap-3 leading-tight transition-opacity hover:opacity-90">
             <img
@@ -21,10 +21,6 @@
                 alt="{{ $c['short_name'] }} logo"
                 class="h-12 w-12 shrink-0 rounded-full object-cover shadow-md ring-2 ring-[#E31E24] ring-offset-2 ring-offset-white transition-transform duration-300 group-hover:scale-105"
             />
-            <span class="flex flex-col">
-                <span class="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-900">{{ $c['short_name'] }}</span>
-                <span class="max-w-[12rem] text-[10px] font-medium leading-snug text-zinc-500 sm:max-w-none sm:text-[11px] sm:text-xs">Multi Services &amp; Money Radio Ltd</span>
-            </span>
         </a>
 
         <nav class="hidden items-center gap-0.5 md:flex" aria-label="Primary">
@@ -46,7 +42,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-bold text-brand-900 shadow-sm transition-all duration-200 hover:border-brand-300 hover:shadow-md sm:inline-block"
-            >IMS</a>
+            >Login</a>
 
             <details class="relative md:hidden">
                 <summary class="list-none cursor-pointer rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-900 shadow-sm transition hover:bg-brand-50 [&::-webkit-details-marker]:hidden">
@@ -56,7 +52,7 @@
                     @foreach ($links as $link)
                         <a href="{{ route($link['route']) }}" class="block px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-brand-50">{{ $link['label'] }}</a>
                     @endforeach
-                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">IMS</a>
+                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Login</a>
                     <a href="tel:{{ $c['phone_tel'] }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-semibold text-brand-800 hover:bg-brand-50">Call {{ $c['phone'] }}</a>
                 </div>
             </details>

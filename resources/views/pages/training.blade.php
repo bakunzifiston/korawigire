@@ -24,7 +24,7 @@
             <a href="{{ $imsApply }}" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-700 underline-offset-2 hover:underline">Apply online</a> for any course, or use the <a href="{{ route('forms.show', 'contact') }}" class="font-semibold text-brand-700 underline-offset-2 hover:underline">contact form</a> / call us for schedules and fees.
         </p>
 
-        <div class="mt-10 space-y-4">
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             @foreach ([
                 [
                     'Graphic Design',
@@ -59,30 +59,16 @@
                     'The ICT course equips learners with essential computer skills. Topics include basic computer use, Microsoft Office, internet usage, email communication, and online safety. This course is ideal for beginners who want to become confident in using digital tools for work and everyday life.',
                 ],
             ] as [$title, $body])
-                <details class="group overflow-hidden rounded-2xl border border-brand-200/80 bg-white shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] open:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.1)]">
-                    <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-6 py-4 font-bold text-brand-900 transition hover:bg-brand-50/50 [&::-webkit-details-marker]:hidden">
-                        <span class="min-w-0 flex-1 pr-2">{{ $title }}</span>
-                        <span class="flex shrink-0 items-center gap-3">
-                            <a
-                                href="{{ $imsApply }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="rounded-full bg-accent-500 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-accent-600 sm:px-4 sm:text-sm"
-                                onclick="event.stopPropagation()"
-                            >Apply</a>
-                            <span class="text-lg text-accent-600 transition group-open:rotate-180" aria-hidden="true">▼</span>
-                        </span>
-                    </summary>
-                    <div class="border-t border-brand-100 px-6 py-4">
-                        <p class="text-sm leading-relaxed text-zinc-600">{{ $body }}</p>
-                        <a
-                            href="{{ $imsApply }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="mt-4 inline-flex rounded-full border-2 border-brand-800 bg-white px-5 py-2.5 text-sm font-semibold text-brand-900 transition hover:bg-brand-50"
-                        >Apply for this program</a>
-                    </div>
-                </details>
+                <article class="flex h-full flex-col rounded-3xl border border-brand-200/80 bg-white p-6 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-14px_rgba(0,0,0,0.16)]">
+                    <h3 class="text-lg font-extrabold leading-snug text-brand-900">{{ $title }}</h3>
+                    <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-600">{{ $body }}</p>
+                    <a
+                        href="{{ $imsApply }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="mt-6 inline-flex w-fit items-center rounded-full bg-accent-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-accent-600/20 transition hover:-translate-y-0.5 hover:bg-accent-600"
+                    >Apply now</a>
+                </article>
             @endforeach
         </div>
     </div>

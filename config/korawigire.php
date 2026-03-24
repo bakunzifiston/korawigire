@@ -10,7 +10,7 @@ return [
 
     'company' => 'Kora Wigire Multi Services & Money Radio Ltd',
     'short_name' => 'Kora Wigire',
-    'tagline' => 'Voices That Promote. Designs That Inspire. Services That Empower.',
+    'tagline' => 'korawigire ltd',
     'website' => 'https://www.korawigire.rw',
     'phone' => '+250 788 715 657',
     'phone_tel' => '+250788715657',
