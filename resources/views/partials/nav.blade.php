@@ -42,7 +42,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-bold text-brand-900 shadow-sm transition-all duration-200 hover:border-brand-300 hover:shadow-md sm:inline-block"
-            >Login</a>
+            >Admin</a>
 
             <details class="relative md:hidden">
                 <summary class="list-none cursor-pointer rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-900 shadow-sm transition hover:bg-brand-50 [&::-webkit-details-marker]:hidden">
@@ -52,7 +52,7 @@
                     @foreach ($links as $link)
                         <a href="{{ route($link['route']) }}" class="block px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-brand-50">{{ $link['label'] }}</a>
                     @endforeach
-                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Login</a>
+                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Admin</a>
                     <a href="tel:{{ $c['phone_tel'] }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-semibold text-brand-800 hover:bg-brand-50">Call {{ $c['phone'] }}</a>
                 </div>
             </details>
