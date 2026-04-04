@@ -47,6 +47,19 @@ return [
             'report' => false,
         ],
 
+        /*
+        | Listing uploads: written directly under public/images/listings (no storage:link).
+        | Use this on shared hosting when symlinks to storage/ are blocked.
+        */
+        'listing_images' => [
+            'driver' => 'local',
+            'root' => public_path('images'),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/images',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

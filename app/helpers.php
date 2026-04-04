@@ -18,7 +18,8 @@ if (! function_exists('site_image')) {
 if (! function_exists('listing_image_url')) {
     /**
      * Public URL for a listing upload (paths like "listings/….jpg").
-     * Prefers storage (disk public) after storage:link; falls back to legacy public/images/.
+     * Uses root-relative URLs for files under public/images and /storage so localhost works when
+     * APP_URL is wrong (e.g. http://localhost without :8000 while using artisan serve).
      */
     function listing_image_url(?string $path): string
     {
@@ -32,12 +33,15 @@ if (! function_exists('listing_image_url')) {
             return site_image($path);
         }
 
-        if (Storage::disk('public')->exists($path)) {
-            return Storage::disk('public')->url($path);
+        $imagesBase = trim(config('images.content_path', 'images'), '/');
+        $fullPublic = public_path($imagesBase.'/'.$path);
+
+        if (Storage::disk('listing_images')->exists($path) || is_file($fullPublic)) {
+            return '/'.$imagesBase.'/'.$path;
         }
 
-        if (is_file(public_path('images/'.$path))) {
-            return site_image($path);
+        if (Storage::disk('public')->exists($path)) {
+            return '/storage/'.$path;
         }
 
         return site_image('logo.png');

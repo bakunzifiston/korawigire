@@ -580,7 +580,7 @@ class ListingController extends Controller
             return [];
         }
 
-        $stored = $request->file($field)->store('listings', 'public');
+        $stored = $request->file($field)->store('listings', 'listing_images');
 
         return [$stored];
     }
@@ -596,7 +596,7 @@ class ListingController extends Controller
             if (! $file) {
                 continue;
             }
-            $paths[] = $file->store('listings', 'public');
+            $paths[] = $file->store('listings', 'listing_images');
         }
 
         return $paths;
