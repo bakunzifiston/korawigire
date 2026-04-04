@@ -145,7 +145,7 @@
                     @forelse ($listings as $item)
                         <a href="{{ route('listings.show', $item['id']) }}" class="block overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                             <article>
-                                <img src="{{ site_image($item['image']) }}" alt="{{ $item['title'] }}" class="h-40 w-full object-cover" loading="lazy" />
+                                <img src="{{ listing_image_url($item['image']) }}" alt="{{ $item['title'] }}" class="h-40 w-full object-cover" loading="lazy" />
                                 <div class="p-4">
                                     <div class="mb-2 flex items-center justify-between gap-2">
                                         <span class="rounded-full px-2.5 py-1 text-xs font-bold {{ $item['badgeClass'] }}">{{ $item['badge'] }}</span>

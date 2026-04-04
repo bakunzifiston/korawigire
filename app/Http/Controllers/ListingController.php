@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
@@ -581,16 +580,9 @@ class ListingController extends Controller
             return [];
         }
 
-        $file = $request->file($field);
-        $dir = public_path('images/listings');
-        if (! File::isDirectory($dir)) {
-            File::makeDirectory($dir, 0755, true);
-        }
+        $stored = $request->file($field)->store('listings', 'public');
 
-        $filename = now()->format('YmdHis').'-'.uniqid().'.'.$file->getClientOriginalExtension();
-        $file->move($dir, $filename);
-
-        return ['listings/'.$filename];
+        return [$stored];
     }
 
     private function storeMultipleImages(Request $request, string $field): array
@@ -600,18 +592,11 @@ class ListingController extends Controller
             return $paths;
         }
 
-        $dir = public_path('images/listings');
-        if (! File::isDirectory($dir)) {
-            File::makeDirectory($dir, 0755, true);
-        }
-
         foreach ((array) $request->file($field, []) as $file) {
             if (! $file) {
                 continue;
             }
-            $filename = now()->format('YmdHis').'-'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move($dir, $filename);
-            $paths[] = 'listings/'.$filename;
+            $paths[] = $file->store('listings', 'public');
         }
 
         return $paths;

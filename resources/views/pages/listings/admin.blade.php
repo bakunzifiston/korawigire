@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         @if ($item->primaryImage())
-                            <img src="{{ site_image($item->primaryImage()) }}" alt="" class="h-24 w-24 rounded-xl object-cover" />
+                            <img src="{{ listing_image_url($item->primaryImage()) }}" alt="" class="h-24 w-24 rounded-xl object-cover" />
                         @endif
                     </div>
 

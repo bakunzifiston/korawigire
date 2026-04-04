@@ -26,7 +26,7 @@
                 <div class="overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm">
                     <div @class(['grid gap-1', 'sm:grid-cols-2' => count($images) > 1])>
                         @foreach ($images as $path)
-                            <img src="{{ site_image($path) }}" alt="" class="aspect-[4/3] w-full object-cover" loading="{{ $loop->first ? 'eager' : 'lazy' }}" />
+                            <img src="{{ listing_image_url($path) }}" alt="" class="aspect-[4/3] w-full object-cover" loading="{{ $loop->first ? 'eager' : 'lazy' }}" />
                         @endforeach
                     </div>
                 </div>
