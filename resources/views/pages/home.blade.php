@@ -32,7 +32,7 @@
                 Discover your potential with {{ config('korawigire.company') }}. Whether you want to amplify your message through Money Radio, express your identity with custom fashion and tailoring, or create a strong brand presence through professional graphic design and printing, we are here to help you succeed.
             </p>
             <div class="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="{{ route('forms.show', 'radio-ad') }}" class="inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-accent-600/25 transition duration-200 hover:-translate-y-0.5 hover:bg-accent-600 hover:shadow-lg">
+                <a href="{{ route('listings.index', ['tab' => 'advert']) }}" class="inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-accent-600/25 transition duration-200 hover:-translate-y-0.5 hover:bg-accent-600 hover:shadow-lg">
                     Advertise With Us — Radio
                 </a>
                 <a href="{{ route('gallery') }}" class="inline-flex items-center justify-center rounded-full border-2 border-brand-300 bg-white px-8 py-4 text-sm font-bold text-brand-900 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-50">

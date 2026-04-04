@@ -4,6 +4,7 @@
         ['route' => 'home', 'label' => 'Home'],
         ['route' => 'about', 'label' => 'About'],
         ['route' => 'services', 'label' => 'Services'],
+        ['route' => 'listings.index', 'label' => 'Listings'],
         ['route' => 'gallery', 'label' => 'Gallery'],
         ['route' => 'learning', 'label' => 'Learning'],
         ['route' => 'training', 'label' => 'Training'],
@@ -36,13 +37,38 @@
             @endforeach
         </nav>
 
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center justify-end gap-2">
+            @guest
+                <a
+                    href="{{ route('login') }}"
+                    class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-bold text-brand-900 shadow-sm transition-all duration-200 hover:border-brand-300 hover:shadow-md sm:inline-block"
+                >Staff login</a>
+            @endguest
+            @auth
+                @if (auth()->user()->is_admin)
+                    <a
+                        href="{{ route('listings.admin') }}"
+                        class="hidden rounded-full bg-brand-900 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-black sm:inline-block"
+                    >Moderate</a>
+                    <a
+                        href="{{ route('listings.admin.comments') }}"
+                        class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-brand-50 sm:inline-block"
+                    >Comments</a>
+                    <form method="post" action="{{ route('logout') }}" class="hidden sm:inline-block">
+                        @csrf
+                        <button
+                            type="submit"
+                            class="rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm transition hover:bg-brand-50"
+                        >Log out</button>
+                    </form>
+                @endif
+            @endauth
             <a
                 href="{{ $c['ims_login_url'] }}"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-bold text-brand-900 shadow-sm transition-all duration-200 hover:border-brand-300 hover:shadow-md sm:inline-block"
-            >Admin</a>
+            >IMS</a>
 
             <details class="relative md:hidden">
                 <summary class="list-none cursor-pointer rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-900 shadow-sm transition hover:bg-brand-50 [&::-webkit-details-marker]:hidden">
@@ -52,7 +78,20 @@
                     @foreach ($links as $link)
                         <a href="{{ route($link['route']) }}" class="block px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-brand-50">{{ $link['label'] }}</a>
                     @endforeach
-                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Admin</a>
+                    @guest
+                        <a href="{{ route('login') }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Staff login</a>
+                    @endguest
+                    @auth
+                        @if (auth()->user()->is_admin)
+                            <a href="{{ route('listings.admin') }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Moderate listings</a>
+                            <a href="{{ route('listings.admin.comments') }}" class="block px-4 py-2.5 text-sm font-semibold text-zinc-800 hover:bg-brand-50">All comments</a>
+                            <form method="post" action="{{ route('logout') }}" class="border-t border-brand-100 px-4 py-2.5">
+                                @csrf
+                                <button type="submit" class="text-sm font-semibold text-zinc-700">Log out</button>
+                            </form>
+                        @endif
+                    @endauth
+                    <a href="{{ $c['ims_login_url'] }}" target="_blank" rel="noopener noreferrer" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">KORA IMS</a>
                     <a href="tel:{{ $c['phone_tel'] }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-semibold text-brand-800 hover:bg-brand-50">Call {{ $c['phone'] }}</a>
                 </div>
             </details>

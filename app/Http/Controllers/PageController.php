@@ -9,13 +9,10 @@ class PageController extends Controller
     public function home()
     {
         $gallery = GalleryImages::all();
-        $preferredHeroSlides = [
-            'gallery/IMG-20250602-WA0031.jpg',
-            'gallery/IMG-20250602-WA0033.jpg',
-            'gallery/IMG-20250602-WA0035.jpg',
-            'gallery/IMG-20250602-WA0037.jpg',
-            'gallery/IMG-20250602-WA0039.jpg',
-        ];
+        $preferredHeroSlides = array_values(array_filter(
+            config('korawigire.hero_slide_images', []),
+            fn ($path) => is_string($path) && $path !== ''
+        ));
 
         $heroSlides = array_values(array_filter(
             $preferredHeroSlides,
@@ -23,7 +20,7 @@ class PageController extends Controller
         ));
 
         if (empty($heroSlides)) {
-            $heroSlides = array_slice($gallery, 0, 5);
+            $heroSlides = ['logo.png'];
         }
 
         return view('pages.home', [

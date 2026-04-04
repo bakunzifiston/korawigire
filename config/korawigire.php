@@ -29,4 +29,17 @@ return [
     /** KORA IMS — student / training application form */
     'ims_application_url' => 'https://ims.korawigire.rw/application',
 
+    /*
+    | Home banner slider — paths under public/images/ (see site_image()).
+    | Use photos with a white or very light background so they read well on the dark hero.
+    | Edit this list to match your actual files (or add files under public/images/hero/).
+    */
+    'hero_slide_images' => [
+        'gallery/IMG-20250602-WA0052.jpg',
+        'gallery/IMG-20250602-WA0050.jpg',
+        'gallery/IMG-20250602-WA0049.jpg',
+        'gallery/IMG-20250602-WA0056.jpg',
+        'gallery/IMG-20250602-WA0053.jpg',
+    ],
+
 ];
