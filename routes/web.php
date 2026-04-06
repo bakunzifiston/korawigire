@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GalleryAdminController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\PageController;
@@ -11,7 +12,6 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/learning', [PageController::class, 'learning'])->name('learning');
 Route::get('/training', [PageController::class, 'training'])->name('training');
-Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/testimonials', [PageController::class, 'testimonials'])->name('testimonials');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
@@ -62,4 +62,12 @@ Route::middleware(['auth', 'admin'])->prefix('listings')->name('listings.')->gro
     Route::delete('/admin/{listing}', [ListingController::class, 'destroy'])->name('destroy');
     Route::post('/admin/{listing}/approve', [ListingController::class, 'approve'])->name('approve');
     Route::post('/admin/{listing}/reject', [ListingController::class, 'reject'])->name('reject');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/gallery', [GalleryAdminController::class, 'index'])->name('gallery.index');
+    Route::post('/gallery/categories', [GalleryAdminController::class, 'storeCategory'])->name('gallery.categories.store');
+    Route::delete('/gallery/categories/{category}', [GalleryAdminController::class, 'destroyCategory'])->name('gallery.categories.destroy');
+    Route::post('/gallery/photos', [GalleryAdminController::class, 'storePhoto'])->name('gallery.photos.store');
+    Route::delete('/gallery/photos/{photo}', [GalleryAdminController::class, 'destroyPhoto'])->name('gallery.photos.destroy');
 });

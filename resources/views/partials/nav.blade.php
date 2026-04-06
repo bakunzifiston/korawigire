@@ -54,6 +54,10 @@
                         href="{{ route('listings.admin.comments') }}"
                         class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-brand-50 sm:inline-block"
                     >Comments</a>
+                    <a
+                        href="{{ route('admin.gallery.index') }}"
+                        class="hidden rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-brand-50 sm:inline-block"
+                    >Gallery</a>
                     <form method="post" action="{{ route('logout') }}" class="hidden sm:inline-block">
                         @csrf
                         <button
@@ -85,6 +89,7 @@
                         @if (auth()->user()->is_admin)
                             <a href="{{ route('listings.admin') }}" class="block border-t border-brand-100 px-4 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50">Moderate listings</a>
                             <a href="{{ route('listings.admin.comments') }}" class="block px-4 py-2.5 text-sm font-semibold text-zinc-800 hover:bg-brand-50">All comments</a>
+                            <a href="{{ route('admin.gallery.index') }}" class="block px-4 py-2.5 text-sm font-semibold text-zinc-800 hover:bg-brand-50">Gallery admin</a>
                             <form method="post" action="{{ route('logout') }}" class="border-t border-brand-100 px-4 py-2.5">
                                 @csrf
                                 <button type="submit" class="text-sm font-semibold text-zinc-700">Log out</button>

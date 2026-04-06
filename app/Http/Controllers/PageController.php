@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GalleryCategory;
+use App\Models\GalleryPhoto;
 use App\Support\GalleryImages;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class PageController extends Controller
 {
     public function home()
     {
-        $gallery = GalleryImages::all();
+        $galleryDbPaths = Schema::hasTable('gallery_photos')
+            ? GalleryPhoto::query()->pluck('path')->all()
+            : [];
+
+        $galleryPathsForHero = array_values(array_unique(array_merge(
+            GalleryImages::all(),
+            $galleryDbPaths,
+        )));
+
         $preferredHeroSlides = array_values(array_filter(
             config('korawigire.hero_slide_images', []),
             fn ($path) => is_string($path) && $path !== ''
@@ -16,24 +28,78 @@ class PageController extends Controller
 
         $heroSlides = array_values(array_filter(
             $preferredHeroSlides,
-            fn (string $img) => in_array($img, $gallery, true)
+            fn (string $img) => in_array($img, $galleryPathsForHero, true)
         ));
 
         if (empty($heroSlides)) {
             $heroSlides = ['logo.png'];
         }
 
+        if (Schema::hasTable('gallery_photos') && GalleryPhoto::query()->exists()) {
+            $previewPhotos = GalleryPhoto::query()
+                ->orderBy('sort_order')
+                ->orderByDesc('id')
+                ->limit(6)
+                ->get();
+            $galleryPreview = $previewPhotos->map(fn (GalleryPhoto $p) => [
+                'path' => $p->path,
+                'alt' => $p->alt_text,
+            ])->all();
+            $galleryCount = GalleryPhoto::query()->count();
+        } else {
+            $filesystem = GalleryImages::all();
+            $galleryPreview = array_map(
+                fn (string $p) => ['path' => $p, 'alt' => null],
+                array_slice($filesystem, 0, 6)
+            );
+            $galleryCount = count($filesystem);
+        }
+
         return view('pages.home', [
             'heroSlides' => $heroSlides,
-            'galleryPreview' => array_slice($gallery, 0, 6),
-            'galleryCount' => count($gallery),
+            'galleryPreview' => $galleryPreview,
+            'galleryCount' => $galleryCount,
         ]);
     }
 
-    public function gallery()
+    public function gallery(Request $request)
     {
+        $usesDatabase = Schema::hasTable('gallery_photos') && GalleryPhoto::query()->exists();
+
+        $categories = Schema::hasTable('gallery_categories')
+            ? GalleryCategory::query()
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+            : collect();
+
+        $activeSlug = $request->query('category');
+        if (! is_string($activeSlug) || $activeSlug === '' || ! Schema::hasTable('gallery_categories') || ! GalleryCategory::query()->where('slug', $activeSlug)->exists()) {
+            $activeSlug = null;
+        }
+
+        if ($usesDatabase) {
+            $query = GalleryPhoto::query()->with('category')->orderBy('sort_order')->orderByDesc('id');
+            if ($activeSlug) {
+                $query->whereHas('category', fn ($q) => $q->where('slug', $activeSlug));
+            }
+            $photos = $query->get();
+            $legacyImages = [];
+        } else {
+            $photos = collect();
+            $legacyImages = GalleryImages::all();
+            $activeSlug = null;
+        }
+
+        $displayCount = $usesDatabase ? $photos->count() : count($legacyImages);
+
         return view('pages.gallery', [
-            'images' => GalleryImages::all(),
+            'usesDatabase' => $usesDatabase,
+            'categories' => $categories,
+            'activeCategory' => $activeSlug,
+            'photos' => $photos,
+            'legacyImages' => $legacyImages,
+            'displayCount' => $displayCount,
         ]);
     }
 

@@ -120,12 +120,12 @@
                     </a>
                 </div>
                 <ul class="mt-10 grid grid-cols-3 gap-2 sm:gap-4">
-                    @foreach ($galleryPreview as $path)
+                    @foreach ($galleryPreview as $item)
                         <li class="group overflow-hidden rounded-2xl border border-brand-200/80 bg-white shadow-md ring-1 ring-black/[0.04] transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                             <a href="{{ route('gallery') }}" class="block overflow-hidden">
                                 <img
-                                    src="{{ site_image($path) }}"
-                                    alt=""
+                                    src="{{ site_image($item['path']) }}"
+                                    alt="{{ $item['alt'] ?? '' }}"
                                     width="320"
                                     height="320"
                                     loading="lazy"
