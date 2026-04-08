@@ -16,5 +16,6 @@
     </main>
     @include('partials.footer')
     @stack('scripts')
+    @include('partials.matomo')
 </body>
 </html>

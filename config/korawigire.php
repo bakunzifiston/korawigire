@@ -42,4 +42,12 @@ return [
         'gallery/IMG-20250602-WA0053.jpg',
     ],
 
+    /*
+    | Matomo analytics — leave MATOMO_SITE_ID empty in .env to disable tracking.
+    */
+    'matomo' => [
+        'url' => rtrim((string) env('MATOMO_URL', 'https://analytics.redp.rw'), '/').'/',
+        'site_id' => env('MATOMO_SITE_ID', '9'),
+    ],
+
 ];
