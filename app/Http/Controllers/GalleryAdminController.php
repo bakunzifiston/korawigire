@@ -65,20 +65,31 @@ class GalleryAdminController extends Controller
     {
         $validated = $request->validate([
             'gallery_category_id' => ['required', 'integer', Rule::exists('gallery_categories', 'id')],
-            'image' => ['required', 'image', 'max:8192'],
+            'images' => ['required', 'array', 'min:1'],
+            'images.*' => ['required', 'image', 'max:8192'],
             'alt_text' => ['nullable', 'string', 'max:255'],
         ]);
 
-        $path = $request->file('image')->store('gallery/uploads', 'gallery_images');
+        $sortOrder = (int) (GalleryPhoto::query()->max('sort_order') ?? 0);
 
-        GalleryPhoto::create([
-            'gallery_category_id' => $validated['gallery_category_id'],
-            'path' => $path,
-            'alt_text' => $validated['alt_text'] ?? null,
-            'sort_order' => (int) (GalleryPhoto::query()->max('sort_order') ?? 0) + 1,
-        ]);
+        foreach ((array) $request->file('images', []) as $image) {
+            if (! $image) {
+                continue;
+            }
 
-        return back()->with('success', 'Photo uploaded.');
+            $path = $image->store('gallery/uploads', 'gallery_images');
+
+            GalleryPhoto::create([
+                'gallery_category_id' => $validated['gallery_category_id'],
+                'path' => $path,
+                'alt_text' => $validated['alt_text'] ?? null,
+                'sort_order' => ++$sortOrder,
+            ]);
+        }
+
+        $count = count((array) $request->file('images', []));
+
+        return back()->with('success', $count === 1 ? 'Photo uploaded.' : $count.' photos uploaded.');
     }
 
     public function destroyPhoto(GalleryPhoto $photo): RedirectResponse

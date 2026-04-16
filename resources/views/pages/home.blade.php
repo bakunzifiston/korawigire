@@ -25,19 +25,13 @@
         <div class="pointer-events-none absolute -bottom-40 -left-32 h-[22rem] w-[22rem] rounded-full bg-[#E31E24]/16 blur-3xl"></div>
         <div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
             <p class="text-xs font-bold uppercase tracking-[0.28em] text-accent-600 sm:text-sm">Rubavu · Rwanda</p>
-            <h1 class="mt-5 max-w-4xl text-3xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            <h1 class="mt-5 max-w-4xl text-2xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-4xl lg:text-5xl">
                 {{ config('korawigire.tagline') }}
             </h1>
             <p class="mt-8 max-w-2xl text-base leading-relaxed text-white/88 sm:text-lg">
-                Discover your potential with {{ config('korawigire.company') }}. Whether you want to amplify your message through Money Radio, express your identity with custom fashion and tailoring, or create a strong brand presence through professional graphic design and printing, we are here to help you succeed.
+                Unlock your potential with {{ config('korawigire.company') }}. From radio promotion to custom fashion and professional branding, we help you stand out and succeed.
             </p>
             <div class="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="{{ route('listings.index', ['tab' => 'advert']) }}" class="inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-accent-600/25 transition duration-200 hover:-translate-y-0.5 hover:bg-accent-600 hover:shadow-lg">
-                    Advertise With Us — Radio
-                </a>
-                <a href="{{ route('gallery') }}" class="inline-flex items-center justify-center rounded-full border-2 border-brand-300 bg-white px-8 py-4 text-sm font-bold text-brand-900 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-50">
-                    View our gallery
-                </a>
                 <a href="{{ route('contact') }}" class="inline-flex items-center justify-center rounded-full border border-brand-300 bg-white px-8 py-4 text-sm font-semibold text-brand-900 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-50">
                     Contact Us
                 </a>
