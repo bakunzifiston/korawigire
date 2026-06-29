@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Programs — Korawigire Multi Services & Money Radio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<style>
+  #courseGrid .col-md-6,
+  #courseGrid .col-lg-4 {
+    display: flex;
+  }
+
+  .kw-course-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 1px solid #e8edf2;
+    background: #fff;
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+
+  .kw-course-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    transform: translateY(-3px);
+  }
+
+  .kw-course-img-wrap {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .kw-course-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .kw-course-card:hover .kw-course-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  /* Card body grows to fill remaining space */
+  .kw-course-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem;
+  }
+
+  .kw-course-body h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+  }
+
+  .kw-course-meta {
+    flex: 1; 
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .kw-read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    color: #059669;
+  }
+
+  .kw-read-more-link:hover { opacity: 0.75; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg kw-navbar" id="kwNavbar">
+  <div class="container-xl">
+    <a class="navbar-brand" href="index.html">
+      <span class="kw-logo-mark">
+        <img src="assets/img/logo.png" alt="Korawigire logo">
+      </span>
+      <span>Korawigire<small class="d-block kw-brand-sub">Multi Services &amp; Money Radio</small></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kwNavMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="kwNavMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link active" href="training.html">Training</a></li>
+        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+        <a href="staff-login.html" class="btn-kw-staff-login">Staff Login</a>
+        <a href="https://ims.korawigire.rw/login" target="_blank" rel="noopener" class="btn-kw-ims">IMS</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="kw-page-header">
+  <div class="container-xl">
+    <div class="kw-section-head text-center">
+      <span class="eyebrow justify-content-center">Training</span>
+      <h1 class="mt-3 mb-3">Build Skills That Open Doors</h1>
+      <p class="mx-auto">Government-recognized vocational programs designed for Rwanda's growing economy. Learn from certified instructors in modern facilities.</p>
+    </div>
+  </div>
+</header>
+
+<!-- COURSE GRID -->
+<section class="pb-5">
+  <div class="container-xl">
+    <div class="row g-4" id="courseGrid">
+
+      <!-- ICT Fundamentals -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/ICT.png" alt="ICT Fundamentals course">
+            <span class="kw-course-tag">ICT</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>ICT Fundamentals</h4>
+            <div class="kw-course-meta">
+              Gain essential computer skills for work and everyday life.
+            </div>
+            <a href="course-detail.html?course=ict-fundamentals" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tailoring -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/Tailoring.png" alt="Tailoring and garment making course">
+            <span class="kw-course-tag">Tailoring</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Professional Tailoring &amp; Garment Making</h4>
+            <div class="kw-course-meta">
+              Learn to design, cut, and sew garments and launch your own fashion career.
+            </div>
+            <a href="course-detail.html?course=tailoring" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carpentry -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/carpentry.png" alt="Carpentry and furniture making course">
+            <span class="kw-course-tag">Carpentry</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Carpentry &amp; Furniture Making</h4>
+            <div class="kw-course-meta">
+              Master woodworking tools and build furniture, doors, and more from scratch.
+            </div>
+            <a href="course-detail.html?course=carpentry" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphic Design -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/graphic-design.png" alt="Graphic design and digital printing course">
+            <span class="kw-course-tag">Design</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Graphic Design &amp; Digital Printing</h4>
+            <div class="kw-course-meta">
+              Create logos, posters, and digital content using professional design tools.
+            </div>
+            <a href="course-detail.html?course=graphic-design" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photography -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/14.png" alt="Photography and photo editing course">
+            <span class="kw-course-tag">Photography</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Photography &amp; Photo Editing</h4>
+            <div class="kw-course-meta">
+              Shoot and edit professional photos for events, portraits, and products.
+            </div>
+            <a href="course-detail.html?course=photography" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Land Survey -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/Land-survey.png" alt="Land Survey">
+            <span class="kw-course-tag">Survey</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Land Survey</h4>
+            <div class="kw-course-meta">
+              Learn to measure and map land for construction and infrastructure projects.
+            </div>
+            <a href="course-detail.html?course=land-survey" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Traffic Rules -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/traffic-rules.png" alt="Traffic Rules">
+            <span class="kw-course-tag">Driving</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Traffic Rules (Amategeko y'umuhanda)</h4>
+            <div class="kw-course-meta">
+              Understand road signs, traffic laws, and prepare for your driving theory test.
+            </div>
+            <a href="course-detail.html?course=traffic-rules" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Classes -->
+      <div class="col-md-6 col-lg-4">
+        <div class="kw-course-card">
+          <div class="kw-course-img-wrap">
+            <img src="./assets/img/19.png" alt="Language Classes">
+            <span class="kw-course-tag">Language</span>
+          </div>
+          <div class="kw-course-body">
+            <h4>Language Classes</h4>
+            <div class="kw-course-meta">
+              Build confidence in a new language for work, education, and daily life.
+            </div>
+            <a href="course-detail.html?course=language-classes" class="kw-read-more-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <a href="#applyForm" class="btn-kw-primary w-100 text-center d-block">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section class="kw-page-section bg-gray" id="applyForm">
+  <div class="container-xl">
+    <div class="kw-section-head mx-auto text-center mb-4">
+      <span class="eyebrow justify-content-center">Apply Now</span>
+      <h2 class="mt-3">Training Application</h2>
+      <p class="mx-auto">Fill out the form below and our team will reach out to confirm your enrollment details.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="kw-contact-form-card">
+          <form id="trainingApplicationForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="kw-form-label">Full Name</label>
+                <input type="text" class="kw-form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Email</label>
+                <input type="email" class="kw-form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Phone Number</label>
+                <input type="tel" class="kw-form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Date of Birth</label>
+                <input type="date" class="kw-form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Gender</label>
+                <select class="kw-form-control" required>
+                  <option value="" disabled selected>Select gender</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Course</label>
+                <select class="kw-form-control" required>
+                  <option value="" disabled selected>Select a course</option>
+                  <option>ICT Fundamentals</option>
+                  <option>Professional Tailoring &amp; Garment Making</option>
+                  <option>Carpentry &amp; Furniture Making</option>
+                  <option>Graphic Design &amp; Digital Printing</option>
+                  <option>Photography &amp; Photo Editing</option>
+                  <option>Land Survey</option>
+                  <option>Traffic Rules (Amategeko y'umuhanda)</option>
+                  <option>Language Classes</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="kw-form-label">Address</label>
+                <input type="text" class="kw-form-control" placeholder="Sector, District" required>
+              </div>
+              <div class="col-md-6">
+                <label class="kw-form-label">Education Level</label>
+                <select class="kw-form-control" required>
+                  <option value="" disabled selected>Select level</option>
+                  <option>Primary</option>
+                  <option>Secondary</option>
+                  <option>Tertiary / University</option>
+                  <option>None</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="kw-form-label">Why do you want to join this course?</label>
+                <textarea class="kw-form-control" rows="4" required></textarea>
+              </div>
+              <div class="col-12 mt-2">
+                <button type="submit" class="btn-kw-primary w-100">Submit Application</button>
+              </div>
+            </div>
+          </form>
+          <div id="applicationSuccess" class="alert alert-success mt-4 d-none" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>Your application has been received. We'll contact you shortly to confirm enrollment.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kw-footer">
+  <div class="container-xl">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="color:#fff;">
+          <span class="kw-logo-mark me-2">
+            <img src="assets/img/logo.png" alt="Korawigire logo">
+          </span>
+          Korawigire
+        </a>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; max-width: 280px;">Multi Services &amp; Money Radio Ltd — creative services, vocational training, and advertising in Rubavu, Rwanda.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="kw-social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Programs</h5>
+        <a href="advertisements.html">Advertisements</a>
+        <a href="training.html">Training</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+      <div class="col-lg-4">
+        <h5>Get In Touch</h5>
+        <a href="#"><i class="bi bi-geo-alt me-2"></i>Rubavu, Western Province, Rwanda</a>
+        <a href="tel:+250788715657"><i class="bi bi-telephone me-2"></i>+250 788 715 657</a>
+        <a href="mailto:korawigire0@gmail.com"><i class="bi bi-envelope me-2"></i>korawigire0@gmail.com</a>
+      </div>
+    </div>
+    <div class="kw-footer-bottom">
+      <span>© 2026 Korawigire Multi Services &amp; Money Radio Ltd. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.getElementById('trainingApplicationForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (this.checkValidity()) {
+      document.getElementById('applicationSuccess').classList.remove('d-none');
+      this.reset();
+      this.classList.add('d-none');
+    } else {
+      this.reportValidity();
+    }
+  });
+</script>
+</body>
+</html>

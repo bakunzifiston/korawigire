@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertising Dashboard — Korawigire Admin</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<script src="auth.js"></script>
+<script>const session = Auth.requireLogin();</script>
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+
+    <a href="dashboard.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><img src="../assets/img/logo.png" alt="Korawigire logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
+      <div class="sidebar-brand-text">
+        <div class="sidebar-brand-name">Korawigire</div>
+        <div class="sidebar-brand-sub">Admin Portal</div>
+      </div>
+    </a>
+
+    <nav class="sidebar-nav">
+
+      <div class="sidebar-nav-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link active">
+        <i class="bi bi-grid-1x2"></i> Dashboard
+      </a>
+      <a href="ads-list.html" class="sidebar-link">
+        <i class="bi bi-megaphone"></i> Advertisements
+        <span class="badge-count">12</span>
+      </a>
+      <a href="ads-list.html?filter=draft" class="sidebar-link">
+        <i class="bi bi-file-earmark-text"></i> Drafts
+        <span class="badge-count">3</span>
+      </a>
+
+      <div class="sidebar-nav-label">Categories</div>
+      <a href="ads-list.html?cat=property" class="sidebar-link">
+        <i class="bi bi-house-door"></i> Property
+      </a>
+      <a href="ads-list.html?cat=announcement" class="sidebar-link">
+        <i class="bi bi-megaphone"></i> Announcements
+      </a>
+      <a href="ads-list.html?cat=application" class="sidebar-link">
+        <i class="bi bi-file-earmark-text"></i> Applications
+      </a>
+      <a href="ads-list.html?cat=broadcast" class="sidebar-link">
+        <i class="bi bi-broadcast-pin"></i> Broadcasts
+      </a>
+      <a href="ads-list.html?cat=promo" class="sidebar-link">
+        <i class="bi bi-tag"></i> Promotions
+      </a>
+      <a href="ads-list.html?cat=other" class="sidebar-link">
+        <i class="bi bi-three-dots"></i> Other
+      </a>
+
+      <div class="sidebar-nav-label">Reports</div>
+      <a href="performance.html" class="sidebar-link">
+        <i class="bi bi-bar-chart-line"></i> Performance
+      </a>
+
+      <div class="sidebar-nav-label">Settings</div>
+      <a href="categories.html" class="sidebar-link">
+        <i class="bi bi-tags"></i> Manage Categories
+      </a>
+      <a href="../index.html" class="sidebar-link" target="_blank">
+        <i class="bi bi-box-arrow-up-right"></i> View Public Site
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">A</div>
+        <div>
+          <div class="sidebar-user-name">Administrator</div>
+          <div class="sidebar-user-role">Korawigire Staff</div>
+        </div>
+      </div>
+      <a href="#" data-action="logout" class="sidebar-link" style="margin-top:0.75rem; color:#ef4444;">
+        <i class="bi bi-box-arrow-left"></i> Log Out
+      </a>
+    </div>
+
+  </aside>
+
+  <div class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div class="topbar-left">
+        <button class="topbar-btn d-lg-none" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="bi bi-list"></i>
+        </button>
+        <div>
+          <div class="topbar-page-title">Dashboard</div>
+          <div class="topbar-breadcrumb">Advertising Management</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a href="#" class="topbar-btn" title="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="topbar-notif-dot"></span>
+        </a>
+        <a href="#" class="topbar-btn" title="View public ads page" target="_blank">
+          <i class="bi bi-eye"></i>
+        </a>
+        <button class="btn-new-ad" onclick="openAdModal()">
+          <i class="bi bi-plus-lg"></i> New Ad
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- ── Stat cards ── -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="bi bi-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">7</div>
+            <div class="stat-label">Active Ads</div>
+            <div class="stat-trend up"><i class="bi bi-arrow-up"></i> 2 this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold"><i class="bi bi-file-earmark"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Drafts</div>
+            <div class="stat-trend"><i class="bi bi-dash"></i> Pending review</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="bi bi-clock-history"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Expired</div>
+            <div class="stat-trend down"><i class="bi bi-arrow-up"></i> 1 expiring soon</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="bi bi-eye"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">1.4K</div>
+            <div class="stat-label">Total Views</div>
+            <div class="stat-trend up"><i class="bi bi-arrow-up"></i> +18% this month</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4" style="display:grid;grid-template-columns:1fr 340px;gap:1.25rem;">
+
+        <!-- ── Recent ads table ── -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title"><i class="bi bi-megaphone"></i> Recent Advertisements</div>
+            <a href="ads-list.html" class="btn btn-outline btn-sm">View All</a>
+          </div>
+
+          <div class="table-toolbar">
+            <div class="search-box">
+              <i class="bi bi-search"></i>
+              <input type="search" class="search-input" placeholder="Search ads…" id="dashSearch">
+            </div>
+            <select class="filter-select" id="dashStatusFilter">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="draft">Draft</option>
+              <option value="expired">Expired</option>
+              <option value="archived">Archived</option>
+            </select>
+            <select class="filter-select" id="dashCatFilter">
+              <option value="">All Categories</option>
+              <option value="property">Property</option>
+              <option value="announcement">Announcement</option>
+              <option value="application">Application</option>
+              <option value="broadcast">Broadcast</option>
+              <option value="promo">Promotion</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="admin-table" id="dashTable">
+              <thead>
+                <tr>
+                  <th>Advertisement</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>CTA</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Views</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashTableBody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="dashEmpty" style="display:none;">
+            <i class="bi bi-megaphone"></i>
+            <p>No advertisements match your filter.</p>
+          </div>
+        </div>
+
+        <!-- ── Right column ── -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Quick actions -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title"><i class="bi bi-lightning"></i> Quick Actions</div>
+            </div>
+            <div class="panel-body" style="display:flex;flex-direction:column;gap:0.5rem;">
+              <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="openAdModal()">
+                <i class="bi bi-plus-lg"></i> Create New Ad
+              </button>
+              <a href="ads-list.html?filter=draft" class="btn btn-outline" style="width:100%;justify-content:center;">
+                <i class="bi bi-file-earmark-check"></i> Review Drafts (3)
+              </a>
+              <a href="performance.html" class="btn btn-outline" style="width:100%;justify-content:center;">
+                <i class="bi bi-bar-chart-line"></i> View Performance
+              </a>
+              <a href="categories.html" class="btn btn-outline" style="width:100%;justify-content:center;">
+                <i class="bi bi-tags"></i> Manage Categories
+              </a>
+            </div>
+          </div>
+
+          <!-- Expiring soon -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title"><i class="bi bi-alarm" style="color:#f59e0b;"></i> Expiring Soon</div>
+            </div>
+            <div class="panel-body" style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;">50% Off Printing Promo</div>
+                  <div style="font-size:.72rem;color:var(--slate-light);">Expires in 3 days</div>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="openAdModal('edit', 7)">Renew</button>
+              </div>
+              <div style="border-top:1px solid var(--border);padding-top:.75rem;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;">Job Vacancy — Designer</div>
+                  <div style="font-size:.72rem;color:var(--slate-light);">Expires in 7 days</div>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="openAdModal('edit', 4)">Renew</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category breakdown -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title"><i class="bi bi-pie-chart"></i> By Category</div>
+            </div>
+            <div class="panel-body" style="display:flex;flex-direction:column;gap:0.6rem;" id="catBreakdown">
+              <!-- populated by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /.admin-content -->
+  </div><!-- /.admin-main -->
+</div><!-- /.admin-shell -->
+
+<div class="modal-overlay" id="adModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Create New Advertisement</div>
+      <button class="modal-close" onclick="closeAdModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="form-grid" style="margin-bottom:1rem;">
+
+        <!-- Title -->
+        <div class="form-group form-full">
+          <label class="form-label">Ad Title <span class="required">*</span></label>
+          <input type="text" class="form-control" id="adTitle" placeholder="e.g. 3-Bedroom House For Rent in Rubavu">
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+          <label class="form-label">Category <span class="required">*</span></label>
+          <select class="form-select" id="adCategory" onchange="onCategoryChange()">
+            <option value="">— Select category —</option>
+            <option value="property">🏠 Property Listing</option>
+            <option value="announcement">📢 Public Announcement</option>
+            <option value="application">📋 Application / Service Promotion</option>
+            <option value="broadcast">📻 Broadcast Announcement</option>
+            <option value="promo">🏷️ Promotional Campaign</option>
+            <option value="other">⋯ Other</option>
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+          <label class="form-label">Status <span class="required">*</span></label>
+          <select class="form-select" id="adStatus">
+            <option value="draft">Draft</option>
+            <option value="active">Active</option>
+            <option value="archived">Archived</option>
+          </select>
+          <div class="form-hint">Set to "Active" to publish immediately.</div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group form-full">
+          <label class="form-label">Description <span class="required">*</span></label>
+          <textarea class="form-control" id="adDesc" placeholder="Write the advertisement content here…"></textarea>
+        </div>
+
+        <!-- Property fields (shown only for property category) -->
+        <div id="propertyFields" style="display:none;" class="form-full">
+          <div class="form-grid cols-3" style="margin-bottom:0;">
+            <div class="form-group">
+              <label class="form-label">Price / Rent</label>
+              <input type="text" class="form-control" id="adPrice" placeholder="e.g. 250,000 RWF/mo">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <input type="number" class="form-control" id="adBedrooms" placeholder="3" min="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-control" id="adLocation" placeholder="e.g. Rubavu Town">
+            </div>
+          </div>
+        </div>
+
+        <!-- Dates -->
+        <div class="form-group">
+          <label class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="adStart">
+        </div>
+        <div class="form-group">
+          <label class="form-label">End Date</label>
+          <input type="date" class="form-control" id="adEnd">
+          <div class="form-hint">Leave blank to run indefinitely.</div>
+        </div>
+
+        <!-- Featured toggle -->
+        <div class="form-group form-full">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
+            <input type="checkbox" id="adFeatured" style="width:16px;height:16px;accent-color:var(--emerald);">
+            <span class="form-label" style="margin:0;">Feature this ad (shown as hero banner on public page)</span>
+          </label>
+        </div>
+
+        <!-- CTA Builder -->
+        <div class="form-group form-full">
+          <label class="form-label">Call-to-Action Button</label>
+          <div class="cta-builder">
+            <div class="cta-type-grid">
+              <div>
+                <input type="radio" name="ctaType" id="ctaCall" value="call" class="cta-type-option" checked>
+                <label for="ctaCall" class="cta-type-label">
+                  <i class="bi bi-telephone-fill"></i> Call Now
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="ctaType" id="ctaApply" value="apply" class="cta-type-option">
+                <label for="ctaApply" class="cta-type-label">
+                  <i class="bi bi-send-fill"></i> Apply
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="ctaType" id="ctaDetails" value="details" class="cta-type-option">
+                <label for="ctaDetails" class="cta-type-label">
+                  <i class="bi bi-info-circle-fill"></i> View Details
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="ctaType" id="ctaWebsite" value="website" class="cta-type-option">
+                <label for="ctaWebsite" class="cta-type-label">
+                  <i class="bi bi-globe2"></i> Visit Website
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="ctaType" id="ctaListen" value="listen" class="cta-type-option">
+                <label for="ctaListen" class="cta-type-label">
+                  <i class="bi bi-play-circle-fill"></i> Listen Live
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Link / Phone Number</label>
+              <input type="text" class="form-control" id="adCtaLink" placeholder="e.g. tel:+250788715657 or https://…">
+            </div>
+          </div>
+        </div>
+
+        <!-- Image URL -->
+        <div class="form-group form-full">
+          <label class="form-label">Image URL <span style="color:var(--slate-light);font-weight:400;">(optional)</span></label>
+          <input type="url" class="form-control" id="adImage" placeholder="https://…">
+          <div class="form-hint">Paste a direct image URL. Property and promo ads display better with an image.</div>
+        </div>
+
+      </div><!-- /.form-grid -->
+    </div><!-- /.modal-body -->
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeAdModal()">Cancel</button>
+      <button class="btn btn-outline btn-sm" onclick="saveDraft()">
+        <i class="bi bi-floppy"></i> Save as Draft
+      </button>
+      <button class="btn btn-primary" onclick="publishAd()">
+        <i class="bi bi-check-lg"></i> Publish Ad
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirmDelete">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Delete Advertisement?</div>
+    <div class="confirm-msg">This action cannot be undone. The ad will be permanently removed from the system and the public page.</div>
+    <div style="display:flex;gap:.75rem;justify-content:center;">
+      <button class="btn btn-outline" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDeleteAd()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+
+const ADS_DATA = [
+  { id:1, title:'3-Bedroom House For Rent — Rubavu Town Centre', category:'property', status:'active', cta:'call', ctaLink:'tel:+250788715657', start:'2025-05-01', end:'2025-08-01', views:312, featured:true,  image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=80&auto=format&fit=crop&q=60' },
+  { id:2, title:'Modern 2-Bedroom Apartment For Sale',            category:'property', status:'active', cta:'call', ctaLink:'tel:+250788715657', start:'2025-04-15', end:'2025-09-15', views:198, featured:false, image:'https://images.unsplash.com/photo-1560449017-96b6e8c0d4fb?w=80&auto=format&fit=crop&q=60' },
+  { id:3, title:'Annual General Meeting — Rubavu Business Community', category:'announcement', status:'active', cta:'details', ctaLink:'contact.html', start:'2025-06-01', end:'2025-07-12', views:87,  featured:false, image:'' },
+  { id:4, title:'Job Vacancy: Senior Graphic Designer',           category:'application', status:'active', cta:'apply',   ctaLink:'contact.html', start:'2025-06-01', end:'2025-06-30', views:145, featured:false, image:'' },
+  { id:5, title:'Photography Program — July Intake Open',         category:'application', status:'active', cta:'apply',   ctaLink:'training.html', start:'2025-06-10', end:'2025-06-30', views:203, featured:false, image:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=80&auto=format&fit=crop&q=60' },
+  { id:6, title:'Community Health Awareness Campaign 2025',       category:'broadcast',  status:'active', cta:'listen',  ctaLink:'#', start:'2025-05-01', end:'2025-12-31', views:421, featured:false, image:'' },
+  { id:7, title:'50% Off All Printing Services — June Only',     category:'promo',      status:'active', cta:'call',    ctaLink:'tel:+250788715657', start:'2025-06-01', end:'2025-06-30', views:176, featured:false, image:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=80&auto=format&fit=crop&q=60' },
+  { id:8, title:'Tender Notice: Office Furniture Supply',         category:'announcement', status:'draft', cta:'details', ctaLink:'contact.html', start:'2025-07-01', end:'2025-07-15', views:0,   featured:false, image:'' },
+  { id:9, title:'Website Development Package for SMEs',           category:'promo',      status:'draft',  cta:'website', ctaLink:'contact.html', start:'',           end:'',           views:0,   featured:false, image:'' },
+  { id:10, title:'Driving Lessons — New Batch Starting August',  category:'application', status:'draft',  cta:'apply',   ctaLink:'training.html', start:'2025-08-01', end:'2025-10-01', views:0,  featured:false, image:'' },
+  { id:11, title:'Grand Opening Sale — Gisenyi Market',          category:'promo',      status:'expired', cta:'call',   ctaLink:'tel:+250788715657', start:'2025-03-01', end:'2025-04-01', views:89, featured:false, image:'' },
+  { id:12, title:'Land For Sale — Lake View Plot',               category:'property',   status:'expired', cta:'call',   ctaLink:'tel:+250788715657', start:'2025-01-01', end:'2025-05-01', views:55, featured:false, image:'' },
+];
+
+const CAT_LABELS = { property:'Property', announcement:'Announcement', application:'Application', broadcast:'Broadcast', promo:'Promotion', other:'Other' };
+const CAT_CLASS  = { property:'cat-property', announcement:'cat-announcement', application:'cat-application', broadcast:'cat-broadcast', promo:'cat-promo', other:'cat-other' };
+const CAT_ICON   = { property:'bi-house-door', announcement:'bi-megaphone', application:'bi-file-earmark-text', broadcast:'bi-broadcast-pin', promo:'bi-tag', other:'bi-three-dots' };
+const STATUS_CLASS = { draft:'status-draft', active:'status-active', expired:'status-expired', archived:'status-archived' };
+const CTA_LABELS   = { call:'Call Now', apply:'Apply', details:'View Details', website:'Visit Website', listen:'Listen Live' };
+
+let pendingDeleteId = null;
+let editingId = null;
+
+function renderTable(data) {
+  const tbody = document.getElementById('dashTableBody');
+  const empty = document.getElementById('dashEmpty');
+  const maxViews = Math.max(...data.map(a => a.views), 1);
+
+  if (!data.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = data.map(ad => `
+    <tr data-id="${ad.id}" data-cat="${ad.category}" data-status="${ad.status}">
+      <td>
+        <div class="ad-title-cell">
+          ${ad.image
+            ? `<img src="${ad.image}" class="ad-thumb" alt="" loading="lazy">`
+            : `<div class="ad-thumb-placeholder"><i class="bi ${CAT_ICON[ad.category] || 'bi-megaphone'}"></i></div>`}
+          <div>
+            <div class="ad-name">${ad.title}</div>
+            <div class="ad-meta">${ad.featured ? '⭐ Featured · ' : ''}ID #${ad.id}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="cat-badge ${CAT_CLASS[ad.category]}">${CAT_LABELS[ad.category]}</span></td>
+      <td><span class="status-badge ${STATUS_CLASS[ad.status]}">${cap(ad.status)}</span></td>
+      <td style="font-size:.78rem;color:var(--slate-mid);">${CTA_LABELS[ad.cta] || '—'}</td>
+      <td style="font-size:.78rem;color:var(--slate-mid);">${ad.start || '—'}</td>
+      <td style="font-size:.78rem;color:var(--slate-mid);">${ad.end || '—'}</td>
+      <td>
+        <div class="perf-bar-wrap">
+          <div class="perf-bar"><div class="perf-bar-fill" style="width:${Math.round((ad.views/maxViews)*100)}%"></div></div>
+          <span class="perf-count">${ad.views}</span>
+        </div>
+      </td>
+      <td>
+        <div class="row-actions">
+          ${ad.status === 'draft' ? `<button class="action-btn publish" title="Publish" onclick="quickPublish(${ad.id})"><i class="bi bi-upload"></i></button>` : ''}
+          <button class="action-btn" title="Edit" onclick="openAdModal('edit', ${ad.id})"><i class="bi bi-pencil"></i></button>
+          <button class="action-btn danger" title="Delete" onclick="askDelete(${ad.id})"><i class="bi bi-trash3"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function applyFilters() {
+  const search = (document.getElementById('dashSearch')?.value || '').toLowerCase();
+  const status = document.getElementById('dashStatusFilter')?.value || '';
+  const cat    = document.getElementById('dashCatFilter')?.value || '';
+
+  const filtered = ADS_DATA.filter(ad => {
+    const matchSearch = !search || ad.title.toLowerCase().includes(search);
+    const matchStatus = !status || ad.status === status;
+    const matchCat    = !cat    || ad.category === cat;
+    return matchSearch && matchStatus && matchCat;
+  });
+
+  renderTable(filtered);
+}
+
+function renderCatBreakdown() {
+  const counts = {};
+  ADS_DATA.forEach(ad => { counts[ad.category] = (counts[ad.category] || 0) + 1; });
+  const total = ADS_DATA.length;
+
+  document.getElementById('catBreakdown').innerHTML = Object.entries(counts).map(([cat, count]) => `
+    <div>
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.25rem;">
+        <span style="font-weight:600;color:var(--slate);">${CAT_LABELS[cat]}</span>
+        <span style="color:var(--slate-light);">${count} ads</span>
+      </div>
+      <div class="perf-bar" style="height:6px;">
+        <div class="perf-bar-fill" style="width:${Math.round((count/total)*100)}%;background:var(--emerald);"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openAdModal(mode = 'create', id = null) {
+  editingId = id;
+  const modal = document.getElementById('adModal');
+  const title = document.getElementById('modalTitle');
+
+  ['adTitle','adDesc','adStart','adEnd','adCtaLink','adImage','adPrice','adBedrooms','adLocation'].forEach(f => {
+    const el = document.getElementById(f);
+    if (el) el.value = '';
+  });
+  document.getElementById('adStatus').value   = 'draft';
+  document.getElementById('adCategory').value = '';
+  document.getElementById('adFeatured').checked = false;
+  document.getElementById('ctaCall').checked  = true;
+  document.getElementById('propertyFields').style.display = 'none';
+
+  if (mode === 'edit' && id) {
+    const ad = ADS_DATA.find(a => a.id === id);
+    if (ad) {
+      title.textContent = 'Edit Advertisement';
+      document.getElementById('adTitle').value    = ad.title;
+      document.getElementById('adCategory').value = ad.category;
+      document.getElementById('adStatus').value   = ad.status;
+      document.getElementById('adStart').value    = ad.start;
+      document.getElementById('adEnd').value      = ad.end;
+      document.getElementById('adCtaLink').value  = ad.ctaLink;
+      document.getElementById('adImage').value    = ad.image;
+      document.getElementById('adFeatured').checked = ad.featured;
+      const ctaRadio = document.getElementById('cta' + cap(ad.cta));
+      if (ctaRadio) ctaRadio.checked = true;
+      onCategoryChange();
+    }
+  } else {
+    title.textContent = 'Create New Advertisement';
+    document.getElementById('adStart').value = new Date().toISOString().split('T')[0];
+  }
+
+  modal.classList.add('open');
+}
+
+function closeAdModal() {
+  document.getElementById('adModal').classList.remove('open');
+  editingId = null;
+}
+
+function onCategoryChange() {
+  const cat = document.getElementById('adCategory').value;
+  document.getElementById('propertyFields').style.display = cat === 'property' ? 'block' : 'none';
+}
+
+function saveDraft() {
+  const title = document.getElementById('adTitle').value.trim();
+  if (!title) { showToast('Please enter an ad title.', 'error'); return; }
+  showToast('Draft saved successfully.', 'success');
+  closeAdModal();
+}
+
+function publishAd() {
+  const title = document.getElementById('adTitle').value.trim();
+  const cat   = document.getElementById('adCategory').value;
+  if (!title) { showToast('Please enter an ad title.', 'error'); return; }
+  if (!cat)   { showToast('Please select a category.', 'error'); return; }
+
+  document.getElementById('adStatus').value = 'active';
+  showToast(`"${title}" published successfully.`, 'success');
+  closeAdModal();
+  applyFilters();
+}
+
+function quickPublish(id) {
+  const ad = ADS_DATA.find(a => a.id === id);
+  if (ad) {
+    ad.status = 'active';
+    showToast(`"${ad.title.substring(0, 40)}…" is now live.`, 'success');
+    applyFilters();
+  }
+}
+
+function askDelete(id) {
+  pendingDeleteId = id;
+  document.getElementById('confirmDelete').classList.add('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmDelete').classList.remove('open');
+  pendingDeleteId = null;
+}
+
+function confirmDeleteAd() {
+  const idx = ADS_DATA.findIndex(a => a.id === pendingDeleteId);
+  if (idx !== -1) {
+    const name = ADS_DATA[idx].title;
+    ADS_DATA.splice(idx, 1);
+    showToast(`"${name.substring(0, 40)}…" deleted.`, 'warning');
+    applyFilters();
+    renderCatBreakdown();
+  }
+  closeConfirm();
+}
+
+function showToast(msg, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success:'bi-check-circle-fill', error:'bi-x-circle-fill', warning:'bi-exclamation-triangle-fill' };
+  toast.innerHTML = `<i class="bi ${icons[type] || 'bi-info-circle'}"></i> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+document.getElementById('sidebarToggle')?.addEventListener('click', () => {
+  document.getElementById('adminSidebar').classList.toggle('open');
+});
+
+document.getElementById('adModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdModal();
+});
+
+document.getElementById('confirmDelete').addEventListener('click', function(e) {
+  if (e.target === this) closeConfirm();
+});
+
+document.getElementById('dashSearch').addEventListener('input', applyFilters);
+document.getElementById('dashStatusFilter').addEventListener('change', applyFilters);
+document.getElementById('dashCatFilter').addEventListener('change', applyFilters);
+
+applyFilters();
+renderCatBreakdown();
+
+document.querySelectorAll('[data-action="logout"]').forEach(el => {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    Auth.logout();
+  });
+});
+</script>
+
+</body>
+</html>

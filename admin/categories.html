@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Categories — Korawigire Admin</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<script src="auth.js"></script>
+<script>const session = Auth.requireLogin();</script>
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+<div class="sidebar-brand-icon"><img src="../assets/img/logo.png" alt="Korawigire logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>      <div class="sidebar-brand-text">
+        <div class="sidebar-brand-name">Korawigire</div>
+        <div class="sidebar-brand-sub">Admin Portal</div>
+      </div>
+    </a>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link">
+        <i class="bi bi-grid-1x2"></i> Dashboard
+      </a>
+      <a href="ads-list.html" class="sidebar-link">
+        <i class="bi bi-megaphone"></i> Advertisements
+        <span class="badge-count">12</span>
+      </a>
+      <a href="ads-list.html?filter=draft" class="sidebar-link">
+        <i class="bi bi-file-earmark-text"></i> Drafts
+        <span class="badge-count">3</span>
+      </a>
+
+      <div class="sidebar-nav-label">Categories</div>
+      <a href="ads-list.html?cat=property" class="sidebar-link">
+        <i class="bi bi-house-door"></i> Property
+      </a>
+      <a href="ads-list.html?cat=announcement" class="sidebar-link">
+        <i class="bi bi-megaphone"></i> Announcements
+      </a>
+      <a href="ads-list.html?cat=application" class="sidebar-link">
+        <i class="bi bi-file-earmark-text"></i> Applications
+      </a>
+      <a href="ads-list.html?cat=broadcast" class="sidebar-link">
+        <i class="bi bi-broadcast-pin"></i> Broadcasts
+      </a>
+      <a href="ads-list.html?cat=promo" class="sidebar-link">
+        <i class="bi bi-tag"></i> Promotions
+      </a>
+      <a href="ads-list.html?cat=other" class="sidebar-link">
+        <i class="bi bi-three-dots"></i> Other
+      </a>
+
+      <div class="sidebar-nav-label">Reports</div>
+      <a href="performance.html" class="sidebar-link">
+        <i class="bi bi-bar-chart-line"></i> Performance
+      </a>
+
+      <div class="sidebar-nav-label">Settings</div>
+      <a href="categories.html" class="sidebar-link active">
+        <i class="bi bi-tags"></i> Manage Categories
+      </a>
+      <a href="../index.html" class="sidebar-link" target="_blank">
+        <i class="bi bi-box-arrow-up-right"></i> View Public Site
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">A</div>
+        <div>
+          <div class="sidebar-user-name">Administrator</div>
+          <div class="sidebar-user-role">Korawigire Staff</div>
+        </div>
+      </div>
+      <a href="#" data-action="logout" class="sidebar-link" style="margin-top:0.75rem; color:#ef4444;">
+        <i class="bi bi-box-arrow-left"></i> Log Out
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div class="topbar-left">
+        <button class="topbar-btn d-lg-none" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="bi bi-list"></i>
+        </button>
+        <div>
+          <div class="topbar-page-title">Manage Categories</div>
+          <div class="topbar-breadcrumb">Settings → Categories</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a href="#" class="topbar-btn" title="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="topbar-notif-dot"></span>
+        </a>
+        <a href="../index.html" class="topbar-btn" title="View public site" target="_blank">
+          <i class="bi bi-eye"></i>
+        </a>
+        <a href="#" data-action="logout" class="topbar-btn" title="Log Out" style="color:#ef4444;">
+          <i class="bi bi-box-arrow-left"></i>
+        </a>
+        <button class="btn-new-ad" onclick="openCatModal()">
+          <i class="bi bi-plus-lg"></i> New Category
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Stats -->
+      <div class="stat-cards" style="grid-template-columns: repeat(3,1fr); margin-bottom:1.75rem;">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="bi bi-tags"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotal">6</div>
+            <div class="stat-label">Total Categories</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="bi bi-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statActive">6</div>
+            <div class="stat-label">Active</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold"><i class="bi bi-slash-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" id="statDisabled">0</div>
+            <div class="stat-label">Disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories table -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><i class="bi bi-tags"></i> All Categories</div>
+          <button class="btn btn-primary btn-sm" onclick="openCatModal()">
+            <i class="bi bi-plus-lg"></i> Add Category
+          </button>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+            <input type="search" class="search-input" placeholder="Search categories…" id="catSearch">
+          </div>
+          <select class="filter-select" id="catStatusFilter">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="catTable">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Slug</th>
+                <th>Icon</th>
+                <th>Description</th>
+                <th>Ads</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="catTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="catEmpty" style="display:none;">
+          <i class="bi bi-tags"></i>
+          <p>No categories found.</p>
+        </div>
+      </div>
+
+    </div><!-- /.admin-content -->
+  </div><!-- /.admin-main -->
+</div><!-- /.admin-shell -->
+
+<!-- CATEGORY MODAL -->
+<div class="modal-overlay" id="catModal">
+  <div class="modal-box" style="max-width:520px;">
+    <div class="modal-header">
+      <div class="modal-title" id="catModalTitle">Add Category</div>
+      <button class="modal-close" onclick="closeCatModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid" style="grid-template-columns:1fr;">
+
+        <div class="form-group">
+          <label class="form-label">Category Name <span class="required">*</span></label>
+          <input type="text" class="form-control" id="catName" placeholder="e.g. Property Listing"
+                 oninput="autoSlug()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Slug <span class="required">*</span></label>
+          <div style="position:relative;">
+            <input type="text" class="form-control" id="catSlug" placeholder="auto-generated"
+                   style="padding-right:5rem;">
+            <button type="button" onclick="autoSlug(true)"
+                    style="position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);
+                           background:var(--emerald-light);color:var(--emerald-dark);border:none;
+                           border-radius:4px;padding:0.2rem 0.5rem;font-size:0.7rem;font-weight:600;cursor:pointer;">
+              Auto
+            </button>
+          </div>
+          <div class="form-hint">Used in URLs. Lowercase, hyphens only. Auto-generated from name.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Icon <span class="required">*</span></label>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" class="form-control" id="catIcon" placeholder="e.g. bi-house-door"
+                   oninput="updateIconPreview()">
+            <div id="iconPreview" style="width:40px;height:40px;background:var(--emerald-light);
+                 border-radius:6px;display:flex;align-items:center;justify-content:center;
+                 color:var(--emerald-dark);font-size:1.2rem;flex-shrink:0;">
+              <i class="bi bi-tag" id="iconPreviewEl"></i>
+            </div>
+          </div>
+          <div class="form-hint">Bootstrap icon class e.g. <code>bi-house-door</code>, <code>bi-megaphone</code>, <code>bi-tag</code></div>
+        </div>
+
+        <!-- Icon picker shortcuts -->
+        <div class="form-group">
+          <label class="form-label">Quick Pick</label>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <button type="button" class="icon-pick-btn" data-icon="bi-house-door" onclick="pickIcon(this)"><i class="bi bi-house-door"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-megaphone" onclick="pickIcon(this)"><i class="bi bi-megaphone"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-file-earmark-text" onclick="pickIcon(this)"><i class="bi bi-file-earmark-text"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-broadcast-pin" onclick="pickIcon(this)"><i class="bi bi-broadcast-pin"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-tag" onclick="pickIcon(this)"><i class="bi bi-tag"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-three-dots" onclick="pickIcon(this)"><i class="bi bi-three-dots"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-briefcase" onclick="pickIcon(this)"><i class="bi bi-briefcase"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-heart" onclick="pickIcon(this)"><i class="bi bi-heart"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-car-front" onclick="pickIcon(this)"><i class="bi bi-car-front"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-shop" onclick="pickIcon(this)"><i class="bi bi-shop"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-mortarboard" onclick="pickIcon(this)"><i class="bi bi-mortarboard"></i></button>
+            <button type="button" class="icon-pick-btn" data-icon="bi-people" onclick="pickIcon(this)"><i class="bi bi-people"></i></button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" id="catDesc" rows="2"
+                    placeholder="Brief description of this category…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="catStatus">
+            <option value="active">Active</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeCatModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCategory()">
+        <i class="bi bi-check-lg"></i> Save Category
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE -->
+<div class="confirm-overlay" id="confirmDelete">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Delete Category?</div>
+    <div class="confirm-msg">This cannot be undone. Ads in this category will become uncategorised.</div>
+    <div style="display:flex;gap:.75rem;justify-content:center;">
+      <button class="btn btn-outline" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDeleteCat()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<style>
+  .icon-pick-btn {
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: white;
+    color: var(--slate-mid);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .icon-pick-btn:hover,
+  .icon-pick-btn.selected {
+    border-color: var(--emerald);
+    background: var(--emerald-light);
+    color: var(--emerald-dark);
+  }
+</style>
+
+<script>
+// ── Data ─────────────────────────────────────────────
+let CATEGORIES = [
+  { id:1, name:'Property Listing',    slug:'property',     icon:'bi-house-door',        desc:'Houses, apartments, land and commercial properties for rent or sale.', status:'active',   adCount:3 },
+  { id:2, name:'Public Announcement', slug:'announcement', icon:'bi-megaphone',         desc:'Official notices, public meetings, and community announcements.',       status:'active',   adCount:2 },
+  { id:3, name:'Application',         slug:'application',  icon:'bi-file-earmark-text', desc:'Job vacancies, service promotions, and application notices.',           status:'active',   adCount:3 },
+  { id:4, name:'Broadcast',           slug:'broadcast',    icon:'bi-broadcast-pin',     desc:'Radio broadcast announcements and live show promotions.',               status:'active',   adCount:1 },
+  { id:5, name:'Promotion',           slug:'promo',        icon:'bi-tag',               desc:'Deals, discounts, and promotional campaigns.',                          status:'active',   adCount:2 },
+  { id:6, name:'Other',               slug:'other',        icon:'bi-three-dots',        desc:'Miscellaneous advertisements that don\'t fit other categories.',        status:'active',   adCount:1 },
+];
+
+let nextId = 7;
+let editingId = null;
+let pendingDeleteId = null;
+
+// ── Render ────────────────────────────────────────────
+function renderTable() {
+  const search = (document.getElementById('catSearch').value || '').toLowerCase();
+  const statusF = document.getElementById('catStatusFilter').value;
+
+  const filtered = CATEGORIES.filter(c => {
+    return (!search || c.name.toLowerCase().includes(search) || c.slug.includes(search))
+        && (!statusF || c.status === statusF);
+  });
+
+  const tbody = document.getElementById('catTableBody');
+  const empty = document.getElementById('catEmpty');
+
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    tbody.innerHTML = filtered.map(c => `
+      <tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:0.6rem;">
+            <div style="width:36px;height:36px;background:var(--emerald-light);border-radius:6px;
+                        display:flex;align-items:center;justify-content:center;
+                        color:var(--emerald-dark);font-size:1rem;flex-shrink:0;">
+              <i class="bi ${c.icon}"></i>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem;">${c.name}</div>
+            </div>
+          </div>
+        </td>
+        <td><code style="background:#f1f5f9;padding:0.2rem 0.5rem;border-radius:4px;font-size:0.78rem;">${c.slug}</code></td>
+        <td><i class="bi ${c.icon}" style="font-size:1.1rem;color:var(--slate-mid);"></i></td>
+        <td style="font-size:0.8rem;color:var(--slate-mid);max-width:220px;">${c.desc || '—'}</td>
+        <td><span style="font-weight:600;">${c.adCount}</span></td>
+        <td>
+          <span class="status-badge ${c.status === 'active' ? 'status-active' : 'status-expired'}">
+            ${c.status === 'active' ? 'Active' : 'Disabled'}
+          </span>
+        </td>
+        <td>
+          <div class="row-actions">
+            <button class="action-btn" title="Edit" onclick="openCatModal(${c.id})"><i class="bi bi-pencil"></i></button>
+            <button class="action-btn" title="${c.status === 'active' ? 'Disable' : 'Enable'}"
+                    onclick="toggleStatus(${c.id})">
+              <i class="bi ${c.status === 'active' ? 'bi-slash-circle' : 'bi-check-circle'}"></i>
+            </button>
+            <button class="action-btn danger" title="Delete" onclick="askDelete(${c.id})">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  // Update stats
+  document.getElementById('statTotal').textContent   = CATEGORIES.length;
+  document.getElementById('statActive').textContent  = CATEGORIES.filter(c => c.status === 'active').length;
+  document.getElementById('statDisabled').textContent = CATEGORIES.filter(c => c.status === 'disabled').length;
+}
+
+// ── Auto slug ─────────────────────────────────────────
+function autoSlug(force = false) {
+  const nameEl = document.getElementById('catName');
+  const slugEl = document.getElementById('catSlug');
+  if (force || !slugEl._manuallyEdited) {
+    slugEl.value = nameEl.value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+    slugEl._manuallyEdited = false;
+  }
+}
+
+// ── Icon preview ──────────────────────────────────────
+function updateIconPreview() {
+  const val = document.getElementById('catIcon').value.trim();
+  const el  = document.getElementById('iconPreviewEl');
+  el.className = 'bi ' + (val || 'bi-tag');
+}
+
+function pickIcon(btn) {
+  document.querySelectorAll('.icon-pick-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const icon = btn.dataset.icon;
+  document.getElementById('catIcon').value = icon;
+  updateIconPreview();
+}
+
+// ── Modal ─────────────────────────────────────────────
+function openCatModal(id = null) {
+  editingId = id;
+  document.getElementById('catModalTitle').textContent = id ? 'Edit Category' : 'Add Category';
+
+  // Reset
+  document.getElementById('catName').value   = '';
+  document.getElementById('catSlug').value   = '';
+  document.getElementById('catIcon').value   = '';
+  document.getElementById('catDesc').value   = '';
+  document.getElementById('catStatus').value = 'active';
+  document.getElementById('catSlug')._manuallyEdited = false;
+  document.getElementById('iconPreviewEl').className = 'bi bi-tag';
+  document.querySelectorAll('.icon-pick-btn').forEach(b => b.classList.remove('selected'));
+
+  if (id) {
+    const cat = CATEGORIES.find(c => c.id === id);
+    if (cat) {
+      document.getElementById('catName').value   = cat.name;
+      document.getElementById('catSlug').value   = cat.slug;
+      document.getElementById('catIcon').value   = cat.icon;
+      document.getElementById('catDesc').value   = cat.desc;
+      document.getElementById('catStatus').value = cat.status;
+      document.getElementById('iconPreviewEl').className = 'bi ' + cat.icon;
+      document.getElementById('catSlug')._manuallyEdited = true;
+      const matchBtn = document.querySelector(`.icon-pick-btn[data-icon="${cat.icon}"]`);
+      if (matchBtn) matchBtn.classList.add('selected');
+    }
+  }
+
+  document.getElementById('catModal').classList.add('open');
+}
+
+function closeCatModal() {
+  document.getElementById('catModal').classList.remove('open');
+  editingId = null;
+}
+
+// ── Save ──────────────────────────────────────────────
+function saveCategory() {
+  const name   = document.getElementById('catName').value.trim();
+  const slug   = document.getElementById('catSlug').value.trim();
+  const icon   = document.getElementById('catIcon').value.trim();
+  const desc   = document.getElementById('catDesc').value.trim();
+  const status = document.getElementById('catStatus').value;
+
+  if (!name) { showToast('Please enter a category name.', 'error'); return; }
+  if (!slug) { showToast('Please enter a slug.', 'error'); return; }
+  if (!icon) { showToast('Please enter an icon class.', 'error'); return; }
+
+  // Check duplicate slug
+  const duplicate = CATEGORIES.find(c => c.slug === slug && c.id !== editingId);
+  if (duplicate) { showToast('A category with this slug already exists.', 'error'); return; }
+
+  if (editingId) {
+    const cat = CATEGORIES.find(c => c.id === editingId);
+    if (cat) { cat.name = name; cat.slug = slug; cat.icon = icon; cat.desc = desc; cat.status = status; }
+    showToast(`"${name}" updated successfully.`, 'success');
+  } else {
+    CATEGORIES.push({ id: nextId++, name, slug, icon, desc, status, adCount: 0 });
+    showToast(`"${name}" added successfully.`, 'success');
+  }
+
+  closeCatModal();
+  renderTable();
+}
+
+// ── Toggle status ─────────────────────────────────────
+function toggleStatus(id) {
+  const cat = CATEGORIES.find(c => c.id === id);
+  if (!cat) return;
+  cat.status = cat.status === 'active' ? 'disabled' : 'active';
+  showToast(`"${cat.name}" is now ${cat.status}.`, cat.status === 'active' ? 'success' : 'warning');
+  renderTable();
+}
+
+// ── Delete ────────────────────────────────────────────
+function askDelete(id) {
+  pendingDeleteId = id;
+  document.getElementById('confirmDelete').classList.add('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmDelete').classList.remove('open');
+  pendingDeleteId = null;
+}
+
+function confirmDeleteCat() {
+  const idx = CATEGORIES.findIndex(c => c.id === pendingDeleteId);
+  if (idx !== -1) {
+    const name = CATEGORIES[idx].name;
+    CATEGORIES.splice(idx, 1);
+    showToast(`"${name}" deleted.`, 'warning');
+    renderTable();
+  }
+  closeConfirm();
+}
+
+// ── Toast ─────────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success:'bi-check-circle-fill', error:'bi-x-circle-fill', warning:'bi-exclamation-triangle-fill' };
+  toast.innerHTML = `<i class="bi ${icons[type] || 'bi-info-circle'}"></i> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+// ── Slug manual edit detection ────────────────────────
+document.getElementById('catSlug').addEventListener('input', function() {
+  this._manuallyEdited = true;
+});
+
+// ── Sidebar toggle ────────────────────────────────────
+document.getElementById('sidebarToggle')?.addEventListener('click', () => {
+  document.getElementById('adminSidebar').classList.toggle('open');
+});
+
+// ── Close modals on overlay click ─────────────────────
+document.getElementById('catModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCatModal();
+});
+document.getElementById('confirmDelete').addEventListener('click', function(e) {
+  if (e.target === this) closeConfirm();
+});
+
+// ── Filter listeners ──────────────────────────────────
+document.getElementById('catSearch').addEventListener('input', renderTable);
+document.getElementById('catStatusFilter').addEventListener('change', renderTable);
+
+// ── Init ──────────────────────────────────────────────
+renderTable();
+</script>
+
+</body>
+</html>

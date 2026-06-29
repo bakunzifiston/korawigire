@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertisement — Korawigire</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/advertisements.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg kw-navbar" id="kwNavbar">
+  <div class="container-xl">
+    <a class="navbar-brand" href="index.html">
+      <span class="kw-logo-mark">
+        <img src="assets/img/logo.png" alt="Korawigire logo">
+      </span>
+      <span>Korawigire<small class="d-block kw-brand-sub">Multi Services &amp; Money Radio</small></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kwNavMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="kwNavMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="training.html">Training</a></li>
+        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+        <a href="staff-login.html" class="btn-kw-staff-login">Staff Login</a>
+        <a href="https://ims.korawigire.rw/login" target="_blank" rel="noopener" class="btn-kw-ims">IMS</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="kw-page-section">
+  <div class="container-xl">
+    <a href="advertisements.html" class="kw-staff-back d-inline-flex mb-4" style="color: var(--color-ink-soft);">
+      <i class="bi bi-arrow-left"></i> Back to Advertisements
+    </a>
+
+    <div class="kw-ad-detail-hero">
+      <img id="adImage" src="" alt="">
+    </div>
+
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <span class="kw-ad-category-tag" id="adCategory" style="position:static; display:inline-block; margin-bottom:14px;"></span>
+        <h1 class="mb-3" id="adTitle" style="font-size: clamp(1.7rem, 2.6vw, 2.2rem);"></h1>
+        <div class="kw-ad-detail-meta">
+          <span><i class="bi bi-calendar3"></i> <span id="adDate"></span></span>
+          <span><i class="bi bi-check-circle text-success"></i> Status: Active</span>
+        </div>
+        <div id="adBody"></div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="kw-ad-sidebar-card mb-3">
+          <h5>Listing Details</h5>
+          <div class="detail-row"><span class="label">Category</span><span class="value" id="sidebarCategory"></span></div>
+          <div class="detail-row"><span class="label">Location</span><span class="value" id="sidebarLocation"></span></div>
+          <div class="detail-row"><span class="label">Published</span><span class="value" id="sidebarDate"></span></div>
+          <div class="detail-row"><span class="label">Status</span><span class="value">Active</span></div>
+        </div>
+        <a id="adCtaBtn" href="#" class="btn-kw-primary w-100 text-center d-block mb-2"></a>
+        <a href="advertisement-request.html" class="btn-kw-outline w-100 text-center d-block">Submit Your Own Ad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="kw-footer">
+  <div class="container-xl">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="color:#fff;">
+          <span class="kw-logo-mark me-2">
+            <img src="assets/img/logo.png" alt="Korawigire logo">
+          </span>
+          Korawigire
+        </a>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; max-width: 280px;">Multi Services &amp; Money Radio Ltd — creative services, vocational training, and advertising in Rubavu, Rwanda.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="kw-social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Programs</h5>
+        <a href="advertisements.html">Advertisements</a>
+        <a href="training.html">Training</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+      <div class="col-lg-4">
+        <h5>Get In Touch</h5>
+        <a href="#"><i class="bi bi-geo-alt me-2"></i>Rubavu, Western Province, Rwanda</a>
+        <a href="tel:+250788715657"><i class="bi bi-telephone me-2"></i>+250 788 715 657</a>
+        <a href="mailto:korawigire0@gmail.com"><i class="bi bi-envelope me-2"></i>korawigire0@gmail.com</a>
+      </div>
+    </div>
+    <div class="kw-footer-bottom">
+      <span>© 2026 Korawigire Multi Services &amp; Money Radio Ltd. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+const ADS = {
+  'house-rubavu': {
+    title:    '2-Bedroom House for Rent in Rubavu',
+    category: 'Property Listing',
+    location: 'Rubavu Town',
+    date:     'Jun 18, 2026',
+    image:    'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-telephone-fill me-2"></i>Call Now', href: 'contact.html' },
+    body: `
+      <p>This well-maintained 2-bedroom house sits in a quiet residential neighborhood, just a short walk from Rubavu town center. The property includes a private courtyard, reliable water and electricity connections, and secure perimeter fencing.</p>
+      <p>Ideal for a small family or professional couple. Available for move-in starting July 1st, 2026. Viewings can be arranged by appointment — contact the number below to schedule a visit.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>2 bedrooms, 1 bathroom</li>
+        <li>Private courtyard and parking space</li>
+        <li>5-minute walk to town center</li>
+        <li>Available from July 1, 2026</li>
+      </ul>`
+  },
+  'health-day': {
+    title:    'Community Health Day This Saturday',
+    category: 'Public Announcement',
+    location: 'Rubavu District Hall',
+    date:     'Jun 20, 2026',
+    image:    'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-arrow-right me-2"></i>Learn More', href: 'contact.html' },
+    body: `
+      <p>The Rubavu District Health Office is hosting a free Community Health Day this Saturday at the district community hall. The event runs from 9am to 2pm and is open to all residents.</p>
+      <p>Services available on the day include general health checkups, blood pressure screening, eye testing, and consultations with qualified medical staff.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>Free entry for all residents</li>
+        <li>Saturday, 9am – 2pm</li>
+        <li>Rubavu District Community Hall</li>
+        <li>Bring your national ID</li>
+      </ul>`
+  },
+  'graphic-designer': {
+    title:    'Hiring: Junior Graphic Designer',
+    category: 'Application',
+    location: 'Rubavu Town',
+    date:     'Jun 15, 2026',
+    image:    'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-send-fill me-2"></i>Apply Now', href: 'contact.html' },
+    body: `
+      <p>A local print and design shop in Rubavu is looking for a motivated Junior Graphic Designer to join their team. The ideal candidate has hands-on experience with Adobe Illustrator and a passion for visual communication.</p>
+      <p>This is a full-time position with a competitive salary and opportunities for growth. Fresh graduates with strong portfolios are encouraged to apply.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>Proficiency in Adobe Illustrator and Photoshop</li>
+        <li>Experience in print and digital design</li>
+        <li>Strong attention to detail</li>
+        <li>Send CV and portfolio to korawigire0@gmail.com</li>
+      </ul>`
+  },
+  'morning-show': {
+    title:    'Money Radio: New Morning Show Lineup',
+    category: 'Broadcast',
+    location: 'Money Radio FM — Rubavu',
+    date:     'Jun 10, 2026',
+    image:    'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-play-circle-fill me-2"></i>Listen Live', href: '#' },
+    body: `
+      <p>Money Radio is excited to announce a brand new morning show lineup starting this month. Tune in from 6am every weekday for a fresh mix of local news, music, community updates, and business insights.</p>
+      <p>The new lineup features new presenters and extended call-in segments so listeners across Rubavu can share their voices on matters that affect the community.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>Weekdays 6am – 10am</li>
+        <li>Live call-ins welcome</li>
+        <li>Local news, music, and business updates</li>
+        <li>Available on FM and online stream</li>
+      </ul>`
+  },
+  'tailoring-promo': {
+    title:    '20% Off Tailoring Services This Month',
+    category: 'Promotional',
+    location: 'Korawigire — Rubavu',
+    date:     'Jun 12, 2026',
+    image:    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-telephone-fill me-2"></i>Call Now', href: 'contact.html' },
+    body: `
+      <p>Korawigire Multi Services is offering 20% off all tailoring services throughout the month of June. Whether you need a custom outfit, alterations, or uniform production, now is the perfect time to book.</p>
+      <p>Our certified tailoring team can handle individual orders and bulk commissions. Contact us to discuss your requirements and get a free quote.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>20% discount on all orders placed in June</li>
+        <li>Custom clothing, uniforms, and alterations</li>
+        <li>Bulk orders welcome</li>
+        <li>Call +250 788 715 657 to book</li>
+      </ul>`
+  },
+  'commercial-plot': {
+    title:    'Commercial Plot for Sale — Rubavu Town',
+    category: 'Property Listing',
+    location: 'Rubavu Town',
+    date:     'Jun 8, 2026',
+    image:    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
+    cta:      { label: '<i class="bi bi-telephone-fill me-2"></i>Call Now', href: 'contact.html' },
+    body: `
+      <p>A 500m² commercial plot is available for sale in a prime location in Rubavu Town. The plot has direct road access and is ideally suited for retail shops, office buildings, or mixed-use development.</p>
+      <p>Title documents are available and the sale can be completed quickly. Contact us to arrange a site visit or to discuss pricing and payment terms.</p>
+      <ul class="mt-3" style="color:#64748b; font-size:0.94rem;">
+        <li>500m² with road frontage</li>
+        <li>Clear title documentation</li>
+        <li>Suitable for retail or office use</li>
+        <li>Call to arrange a site visit</li>
+      </ul>`
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id     = params.get('id');
+const ad     = ADS[id];
+
+if (ad) {
+  document.title = ad.title + ' — Korawigire Advertisements';
+  document.getElementById('adImage').src          = ad.image;
+  document.getElementById('adImage').alt          = ad.title;
+  document.getElementById('adCategory').textContent = ad.category;
+  document.getElementById('adTitle').textContent  = ad.title;
+  document.getElementById('adDate').textContent   = 'Published ' + ad.date;
+  document.getElementById('adBody').innerHTML     = ad.body;
+  document.getElementById('sidebarCategory').textContent = ad.category;
+  document.getElementById('sidebarLocation').textContent = ad.location;
+  document.getElementById('sidebarDate').textContent     = ad.date;
+  document.getElementById('adCtaBtn').innerHTML   = ad.cta.label;
+  document.getElementById('adCtaBtn').href        = ad.cta.href;
+} else {
+  document.getElementById('adTitle').textContent = 'Advertisement Not Found';
+  document.getElementById('adBody').innerHTML    = '<p>Sorry, this advertisement could not be found. <a href="advertisements.html">Browse all ads</a>.</p>';
+}
+</script>
+
+</body>
+</html>

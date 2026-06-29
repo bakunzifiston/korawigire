@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Login | Korawigire</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/staff-login.css">
+</head>
+<body>
+
+<header class="kw-staff-hero">
+  <div class="container-xl">
+    <a href="index.html" class="kw-staff-back"><i class="bi bi-arrow-left"></i> Back to site</a>
+    <h1>Staff Login</h1>
+    <p>Sign in to review and approve listings before they appear on the site.</p>
+  </div>
+</header>
+
+<main class="kw-staff-main">
+  <div class="kw-staff-card">
+
+    <div id="loginError"
+         style="display:none; background:#fee2e2; color:#dc2626;
+                border:1px solid #fca5a5; border-radius:8px;
+                padding:.75rem 1rem; margin-bottom:1.25rem;
+                font-size:.875rem; font-weight:500;">
+    </div>
+
+    <form id="staffLoginForm" novalidate>
+      <div class="mb-4">
+        <label for="staffEmail" class="kw-staff-label">Email</label>
+        <input type="email" class="kw-staff-input" id="staffEmail"
+               placeholder="you@korawigire.rw" required>
+      </div>
+      <div class="mb-3">
+        <label for="staffPassword" class="kw-staff-label">Password</label>
+        <input type="password" class="kw-staff-input" id="staffPassword"
+               placeholder="••••••••" required>
+      </div>
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="rememberMe">
+          <label class="form-check-label kw-staff-remember" for="rememberMe">Remember me</label>
+        </div>
+        <a href="#" class="kw-staff-forgot">Forgot password?</a>
+      </div>
+      <button type="submit" class="kw-staff-submit">Sign In</button>
+    </form>
+
+    <p class="kw-staff-footnote">Need full system access?
+      <a href="https://ims.korawigire.rw/login" target="_blank" rel="noopener">Go to IMS &rarr;</a>
+    </p>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="admin/auth.js"></script>
+<script>
+  Auth.redirectIfLoggedIn();
+
+  document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email    = document.getElementById('staffEmail').value.trim();
+    const password = document.getElementById('staffPassword').value;
+    const errorBox = document.getElementById('loginError');
+
+    errorBox.style.display = 'none';
+    errorBox.textContent   = '';
+    document.getElementById('staffEmail').style.borderColor    = '';
+    document.getElementById('staffPassword').style.borderColor = '';
+
+    if (!email || !password) {
+      if (!email)    document.getElementById('staffEmail').style.borderColor    = '#dc2626';
+      if (!password) document.getElementById('staffPassword').style.borderColor = '#dc2626';
+      errorBox.textContent   = 'Please enter your email and password.';
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    const result = Auth.login(email, password);
+
+    if (result.success) {
+      window.location.href = 'admin/dashboard.html';
+    } else {
+      document.getElementById('staffEmail').style.borderColor    = '#dc2626';
+      document.getElementById('staffPassword').style.borderColor = '#dc2626';
+      errorBox.textContent   = result.message;
+      errorBox.style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
