@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertisements — Korawigire Multi Services & Money Radio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/advertisements.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg kw-navbar" id="kwNavbar">
+  <div class="container-xl">
+    <a class="navbar-brand" href="index.html">
+      <span class="kw-logo-mark">
+        <img src="assets/img/logo.png" alt="Korawigire logo">
+      </span>
+      <span>Korawigire<small class="d-block kw-brand-sub">Multi Services &amp; Money Radio</small></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kwNavMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="kwNavMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="training.html">Training</a></li>
+        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+        <a href="staff-login.html" class="btn-kw-staff-login">Staff Login</a>
+        <a href="https://ims.korawigire.rw/login" target="_blank" rel="noopener" class="btn-kw-ims">IMS</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="kw-page-header pb-0">
+  <div class="container-xl">
+    <div class="kw-section-head text-center">
+      <span class="eyebrow justify-content-center">Advertisements</span>
+      <h1 class="mt-3 mb-3">Reach Rubavu Through Korawigire</h1>
+      <p class="mx-auto">Browse current listings and announcements, or submit your own advertisement to run on our website and Money Radio.</p>
+    </div>
+    <div class="text-center mb-4">
+      <a href="advertisement-request.html" class="btn-kw-amber"><i class="bi bi-plus-circle me-2"></i>Submit an Advertisement</a>
+    </div>
+  </div>
+</header>
+
+<!-- SEARCH + FILTERS -->
+<section class="pb-3">
+  <div class="container-xl">
+    <div class="kw-ad-search-bar">
+      <i class="bi bi-search"></i>
+      <input type="text" id="adSearchInput" placeholder="Search advertisements...">
+    </div>
+    <div class="kw-filter-pills">
+      <button class="kw-filter-pill active" data-filter="all">All</button>
+      <button class="kw-filter-pill" data-filter="property">Property Listings</button>
+      <button class="kw-filter-pill" data-filter="announcement">Public Announcements</button>
+      <button class="kw-filter-pill" data-filter="application">Applications</button>
+      <button class="kw-filter-pill" data-filter="broadcast">Broadcast Announcements</button>
+      <button class="kw-filter-pill" data-filter="promo">Promotional Campaigns</button>
+    </div>
+  </div>
+</section>
+
+<!-- AD GRID -->
+<section class="pb-4">
+  <div class="container-xl">
+    <div class="row g-4" id="adGrid">
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="property" data-title="2-Bedroom House for Rent in Rubavu">
+        <a href="ad-detail.html?id=house-rubavu" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80" alt="House for rent">
+            <span class="kw-ad-category-tag">Property Listing</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 18, 2026</span>
+            <h4>2-Bedroom House for Rent in Rubavu</h4>
+            <p>Quiet neighborhood, walking distance to town center. Available from July 1st.</p>
+            <span class="kw-ad-cta">Call Now <i class="bi bi-telephone-fill ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="announcement" data-title="Community Health Day This Saturday">
+        <a href="ad-detail.html?id=health-day" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Community health day">
+            <span class="kw-ad-category-tag">Public Announcement</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 20, 2026</span>
+            <h4>Community Health Day This Saturday</h4>
+            <p>Free checkups and consultations at the Rubavu District community hall, 9am–2pm.</p>
+            <span class="kw-ad-cta">Learn More <i class="bi bi-arrow-right ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="application" data-title="Hiring: Junior Graphic Designer">
+        <a href="ad-detail.html?id=graphic-designer" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Job application">
+            <span class="kw-ad-category-tag">Application</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 15, 2026</span>
+            <h4>Hiring: Junior Graphic Designer</h4>
+            <p>Local print shop seeking a junior designer with Adobe Illustrator experience.</p>
+            <span class="kw-ad-cta">Apply <i class="bi bi-arrow-right ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="broadcast" data-title="Money Radio: New Morning Show Lineup">
+        <a href="ad-detail.html?id=morning-show" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=600&q=80" alt="Radio broadcast">
+            <span class="kw-ad-category-tag">Broadcast</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 10, 2026</span>
+            <h4>Money Radio: New Morning Show Lineup</h4>
+            <p>Tune in from 6am for a fresh lineup of news, music, and community updates.</p>
+            <span class="kw-ad-cta">Learn More <i class="bi bi-arrow-right ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="promo" data-title="20% Off Tailoring Services This Month">
+        <a href="ad-detail.html?id=tailoring-promo" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="Tailoring promotion">
+            <span class="kw-ad-category-tag">Promotional</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 12, 2026</span>
+            <h4>20% Off Tailoring Services This Month</h4>
+            <p>Book any tailoring service in June and save 20% on custom orders.</p>
+            <span class="kw-ad-cta">Visit Website <i class="bi bi-box-arrow-up-right ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 ad-item" data-category="property" data-title="Commercial Plot for Sale — Rubavu Town">
+        <a href="ad-detail.html?id=commercial-plot" class="kw-ad-card">
+          <div class="kw-ad-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Commercial plot">
+            <span class="kw-ad-category-tag">Property Listing</span>
+          </div>
+          <div class="kw-ad-body">
+            <span class="kw-ad-date">Published Jun 8, 2026</span>
+            <h4>Commercial Plot for Sale — Rubavu Town</h4>
+            <p>500m² plot with road access, ideal for retail or office development.</p>
+            <span class="kw-ad-cta">Call Now <i class="bi bi-telephone-fill ms-1"></i></span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <p id="adNoResults" class="text-center text-muted py-5 d-none">No advertisements match your search. Try a different keyword or category.</p>
+
+    <nav class="d-flex justify-content-center mt-4" aria-label="Advertisements pagination">
+      <ul class="pagination">
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="py-3 mb-5">
+  <div class="kw-cta-band">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h2>Have something to advertise?</h2>
+        <p>Reach thousands of people across Rubavu on our website and Money Radio FM.</p>
+      </div>
+      <div class="col-lg-4 cta-actions mt-4 mt-lg-0">
+        <a href="advertisement-request.html" class="btn-kw-amber">Submit an Ad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kw-footer">
+  <div class="container-xl">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="color:#fff;">
+          <span class="kw-logo-mark me-2">
+            <img src="assets/img/logo.png" alt="Korawigire logo">
+          </span>
+          Korawigire
+        </a>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; max-width: 280px;">Multi Services &amp; Money Radio Ltd — creative services, vocational training, and advertising in Rubavu, Rwanda.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="kw-social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="kw-social-icon"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Programs</h5>
+        <a href="advertisements.html">Advertisements</a>
+        <a href="training.html">Training</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+      <div class="col-lg-4">
+        <h5>Get In Touch</h5>
+        <a href="#"><i class="bi bi-geo-alt me-2"></i>Rubavu, Western Province, Rwanda</a>
+        <a href="tel:+250788715657"><i class="bi bi-telephone me-2"></i>+250 788 715 657</a>
+        <a href="mailto:korawigire0@gmail.com"><i class="bi bi-envelope me-2"></i>korawigire0@gmail.com</a>
+      </div>
+    </div>
+    <div class="kw-footer-bottom">
+      <span>© 2026 Korawigire Multi Services &amp; Money Radio Ltd. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  const filterPills = document.querySelectorAll('.kw-filter-pill');
+  const searchInput = document.getElementById('adSearchInput');
+  const adItems     = document.querySelectorAll('.ad-item');
+  const noResults   = document.getElementById('adNoResults');
+
+  function applyFilters() {
+    const activeFilter = document.querySelector('.kw-filter-pill.active').dataset.filter;
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    adItems.forEach(function (item) {
+      const matchesCategory = activeFilter === 'all' || item.dataset.category === activeFilter;
+      const matchesSearch   = !query || item.dataset.title.toLowerCase().includes(query);
+      const visible = matchesCategory && matchesSearch;
+      item.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    });
+    noResults.classList.toggle('d-none', visibleCount > 0);
+  }
+
+  filterPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      filterPills.forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+</script>
+</body>
+</html>
